@@ -1,23 +1,24 @@
 /* ============================================================
    MR. BIKE — styles.css
    Professional mobile bike repair service website
-   Color palette: Navy #0B1F3A | Orange #FF6B2C | Light #F0F4F8
+   Color palette: Pink #E8186D | Teal #00897B | White #FFFFFF
    ============================================================ */
 
 /* ==================== CSS VARIABLES ==================== */
 :root {
-  --navy:        #0B1F3A;
-  --navy-dark:   #071426;
-  --navy-mid:    #1E3A5F;
-  --orange:      #FF6B2C;
-  --orange-dark: #EA580C;
-  --orange-light:#FFF0E8;
-  --teal:        #0D9488;
+  --pink:        #E8186D;
+  --pink-dark:   #C2185B;
+  --pink-light:  #FFF0F6;
+  --teal:        #00897B;
+  --teal-dark:   #00695C;
+  --teal-light:  #E0F2F1;
+  --dark:        #1A1A2E;
+  --dark-mid:    #2D2D44;
   --bg:          #FFFFFF;
-  --bg-light:    #F0F4F8;
-  --bg-alt:      #F8FAFC;
-  --text:        #1A202C;
-  --text-muted:  #64748B;
+  --bg-light:    #F7F7FA;
+  --bg-alt:      #FAFAFA;
+  --text:        #2D3748;
+  --text-muted:  #718096;
   --border:      #E2E8F0;
   --border-dark: #CBD5E1;
   --shadow-sm:   0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.06);
@@ -27,7 +28,7 @@
   --radius-md:   16px;
   --radius-lg:   24px;
   --radius-pill: 999px;
-  --nav-h:       72px;
+  --nav-h:       180px;
   --transition:  0.2s ease;
 }
 
@@ -82,7 +83,7 @@ h1, h2, h3, h4, h5 {
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-weight: 800;
   line-height: 1.15;
-  color: var(--navy);
+  color: var(--dark);
 }
 
 /* ==================== LAYOUT ==================== */
@@ -110,25 +111,25 @@ h1, h2, h3, h4, h5 {
 }
 
 .btn--orange {
-  background: var(--orange);
+  background: var(--pink);
   color: white;
-  border-color: var(--orange);
-  box-shadow: 0 4px 16px rgba(255,107,44,0.30);
+  border-color: var(--pink);
+  box-shadow: 0 4px 16px rgba(232,24,109,0.30);
 }
 .btn--orange:hover {
-  background: var(--orange-dark);
-  border-color: var(--orange-dark);
+  background: var(--pink-dark);
+  border-color: var(--pink-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(255,107,44,0.40);
+  box-shadow: 0 8px 24px rgba(232,24,109,0.40);
 }
 
 .btn--outline-dark {
   background: transparent;
-  color: var(--navy);
+  color: var(--dark);
   border-color: var(--border-dark);
 }
 .btn--outline-dark:hover {
-  border-color: var(--navy);
+  border-color: var(--dark);
   background: var(--bg-light);
   transform: translateY(-2px);
 }
@@ -155,7 +156,7 @@ h1, h2, h3, h4, h5 {
 }
 .section-title {
   font-size: clamp(28px, 4vw, 40px);
-  color: var(--navy);
+  color: var(--dark);
   margin-bottom: 14px;
 }
 .section-title--light { color: white; }
@@ -194,16 +195,30 @@ h1, h2, h3, h4, h5 {
   text-decoration: none;
   flex-shrink: 0;
 }
+.nav__logo-img {
+  height: 166px;
+  width: auto;
+}
 .nav__logo-icon {
   font-size: 26px;
   line-height: 1;
 }
-.nav__logo-text {
+
+.nav__brand {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.nav__brand-name {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 800;
-  font-size: 22px;
-  color: var(--navy);
-  letter-spacing: -0.3px;
+  font-size: 20px;
+  color: var(--dark);
+}
+.nav__brand-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
 }
 
 .nav__links {
@@ -223,10 +238,20 @@ h1, h2, h3, h4, h5 {
   text-decoration: none;
 }
 .nav__links a:not(.btn):hover {
-  color: var(--navy);
+  color: var(--dark);
   background: var(--bg-light);
 }
 .nav__links .btn { margin-left: 8px; }
+.nav__links a.btn--orange {
+  color: white;
+  background: var(--pink);
+  border-color: var(--pink);
+}
+.nav__links a.btn--orange:hover {
+  color: white;
+  background: var(--pink-dark);
+  border-color: var(--pink-dark);
+}
 
 .nav__toggle {
   display: none;
@@ -241,7 +266,7 @@ h1, h2, h3, h4, h5 {
   display: block;
   width: 24px;
   height: 2.5px;
-  background: var(--navy);
+  background: var(--dark);
   border-radius: 2px;
   transition: var(--transition);
 }
@@ -274,23 +299,28 @@ h1, h2, h3, h4, h5 {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--orange-light);
-  color: var(--orange-dark);
+  background: var(--pink-light);
+  color: var(--pink-dark);
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
   font-size: 14px;
   padding: 8px 16px;
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(255,107,44,0.25);
+  border: 1px solid rgba(232,24,109,0.20);
   width: fit-content;
 }
 
 .hero__headline {
   font-size: clamp(34px, 5vw, 54px);
   font-weight: 800;
-  color: var(--navy);
+  color: var(--dark);
   line-height: 1.12;
   letter-spacing: -0.5px;
+}
+
+.hero__headline em {
+  font-style: italic;
+  color: var(--pink);
 }
 
 .hero__sub {
@@ -341,12 +371,12 @@ h1, h2, h3, h4, h5 {
   width: 100%;
   max-width: 520px;
   height: auto;
-  filter: drop-shadow(0 20px 40px rgba(11,31,58,0.12));
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.10));
 }
 
 /* ==================== STATS BAR ==================== */
 .stats {
-  background: var(--navy);
+  background: var(--dark);
   padding: 48px 0;
 }
 
@@ -414,19 +444,19 @@ h1, h2, h3, h4, h5 {
 .service-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
-  border-color: var(--orange);
+  border-color: var(--pink);
 }
 
 .service-card--popular {
-  border-color: var(--orange);
-  box-shadow: 0 4px 20px rgba(255,107,44,0.15);
+  border-color: var(--pink);
+  box-shadow: 0 4px 20px rgba(232,24,109,0.15);
 }
 
 .service-card__popular-badge {
   position: absolute;
   top: 14px;
   right: 14px;
-  background: var(--orange);
+  background: var(--pink);
   color: white;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
@@ -456,7 +486,7 @@ h1, h2, h3, h4, h5 {
 .service-card__name {
   font-size: 16px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--dark);
   line-height: 1.25;
 }
 
@@ -482,9 +512,9 @@ h1, h2, h3, h4, h5 {
   margin-top: auto;
 }
 .service-card__tag--orange {
-  background: var(--orange-light);
-  color: var(--orange-dark);
-  border-color: rgba(255,107,44,0.25);
+  background: var(--pink-light);
+  color: var(--pink-dark);
+  border-color: rgba(232,24,109,0.20);
 }
 
 /* ==================== WHY MR. BIKE ==================== */
@@ -528,7 +558,7 @@ h1, h2, h3, h4, h5 {
 .why-card__title {
   font-size: 22px;
   font-weight: 800;
-  color: var(--navy);
+  color: var(--dark);
 }
 
 .why-card__desc {
@@ -540,7 +570,7 @@ h1, h2, h3, h4, h5 {
 /* ==================== HOW IT WORKS ==================== */
 .how {
   padding: 96px 0;
-  background: var(--navy);
+  background: var(--dark);
 }
 
 .how__grid {
@@ -561,7 +591,7 @@ h1, h2, h3, h4, h5 {
 
 .how__connector {
   font-size: 32px;
-  color: var(--orange);
+  color: var(--pink);
   font-weight: 800;
   flex-shrink: 0;
   padding-top: 80px;
@@ -572,7 +602,7 @@ h1, h2, h3, h4, h5 {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 800;
   font-size: 52px;
-  color: var(--orange);
+  color: var(--pink);
   line-height: 1;
   letter-spacing: -2px;
 }
@@ -625,7 +655,7 @@ h1, h2, h3, h4, h5 {
   transition: border-color var(--transition);
 }
 .faq__item[open] {
-  border-color: var(--orange);
+  border-color: var(--teal);
 }
 
 .faq__question {
@@ -637,7 +667,7 @@ h1, h2, h3, h4, h5 {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
   font-size: 17px;
-  color: var(--navy);
+  color: var(--dark);
   cursor: pointer;
   list-style: none;
   user-select: none;
@@ -649,7 +679,7 @@ h1, h2, h3, h4, h5 {
 
 .faq__arrow {
   font-size: 18px;
-  color: var(--orange);
+  color: var(--teal);
   flex-shrink: 0;
   transition: transform 0.25s ease;
   font-weight: 400;
@@ -669,12 +699,12 @@ details[open] .faq__arrow {
   padding-top: 18px;
 }
 .faq__answer strong {
-  color: var(--navy);
+  color: var(--dark);
   font-weight: 600;
 }
 
 .faq__link {
-  color: var(--orange);
+  color: var(--pink);
   font-weight: 600;
   text-decoration: none;
   transition: opacity var(--transition);
@@ -724,10 +754,10 @@ details[open] .faq__arrow {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
   font-size: 14px;
-  color: var(--navy);
+  color: var(--dark);
 }
 
-.form-required { color: var(--orange); }
+.form-required { color: var(--pink); }
 
 .form-optional {
   font-weight: 400;
@@ -751,8 +781,8 @@ details[open] .faq__arrow {
 .form-input::placeholder { color: #A0AEC0; }
 .form-input:hover { border-color: var(--border-dark); }
 .form-input:focus {
-  border-color: var(--orange);
-  box-shadow: 0 0 0 3px rgba(255,107,44,0.15);
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(0,137,123,0.15);
 }
 
 .form-select {
@@ -800,8 +830,8 @@ details[open] .faq__arrow {
 .booking-info-card:hover { transform: translateY(-2px); }
 
 .booking-info-card--highlight {
-  border-color: var(--orange);
-  background: var(--orange-light);
+  border-color: var(--teal);
+  background: var(--teal-light);
 }
 
 .booking-info-card__icon {
@@ -823,10 +853,10 @@ details[open] .faq__arrow {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
   font-size: 16px;
-  color: var(--navy);
+  color: var(--dark);
 }
 .booking-info-card__value a {
-  color: var(--orange);
+  color: var(--pink);
   text-decoration: none;
 }
 .booking-info-card__value a:hover { text-decoration: underline; }
@@ -839,7 +869,7 @@ details[open] .faq__arrow {
 
 /* ==================== FOOTER ==================== */
 .footer {
-  background: var(--navy);
+  background: var(--dark);
   padding-top: 72px;
 }
 
@@ -851,7 +881,7 @@ details[open] .faq__arrow {
   border-bottom: 1px solid rgba(255,255,255,0.10);
 }
 
-.footer__logo {
+.footer__brand-name {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 800;
   font-size: 24px;
@@ -871,7 +901,7 @@ details[open] .faq__arrow {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--orange);
+  background: var(--pink);
   color: white;
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 700;
@@ -882,7 +912,7 @@ details[open] .faq__arrow {
   transition: background var(--transition), transform var(--transition);
 }
 .footer__phone:hover {
-  background: var(--orange-dark);
+  background: var(--pink-dark);
   transform: translateY(-2px);
 }
 
@@ -1017,8 +1047,9 @@ details[open] .faq__arrow {
     padding-bottom: 48px;
     gap: 40px;
   }
-  .hero__illustration { order: -1; }
-  .hero__svg { max-width: 380px; margin: 0 auto; }
+  .hero__visual { order: -1; }
+  .hero__photo { height: 360px; }
+  .hero__photo-card { max-width: 100%; }
   .hero__headline { font-size: 36px; }
   .hero__sub { font-size: 16px; }
   .hero__actions { flex-direction: column; }
@@ -1107,7 +1138,7 @@ details[open] .faq__arrow {
   .why-card { flex-direction: column; }
 
   .hero__headline { font-size: 30px; }
-  .hero__svg { max-width: 300px; }
+  .hero__photo { height: 280px; }
 
   .how__number { font-size: 42px; }
   .how__title { font-size: 18px; }
@@ -1119,7 +1150,125 @@ details[open] .faq__arrow {
 
   .footer { padding-top: 48px; }
   .footer__phone { font-size: 14px; }
+
+  .nav__logo-img { height: 104px; }
 }
+
+/* ==================== SERVICE EMOJI CIRCLES ==================== */
+.service-emoji {
+  width: 88px;
+  height: 88px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 44px;
+  flex-shrink: 0;
+}
+
+.emoji-blue   { background: #F0F4FF; }
+.emoji-red    { background: #FFF0F6; }
+.emoji-yellow { background: #FEFCE8; }
+.emoji-slate  { background: #F1F5F9; }
+.emoji-orange { background: #FFF0F6; }
+.emoji-teal   { background: #E0F2F1; }
+.emoji-purple { background: #FAF5FF; }
+.emoji-green  { background: #F0FDF4; }
+
+/* ==================== HOW IT WORKS EMOJI ==================== */
+.how__emoji {
+  font-size: 64px;
+  line-height: 1;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15));
+}
+
+/* ==================== SCROLL REVEAL ANIMATIONS ==================== */
+/* GSAP handles all reveal animations — no CSS opacity:0 needed */
+
+.stagger-1 { transition-delay: 0.05s; }
+.stagger-2 { transition-delay: 0.12s; }
+.stagger-3 { transition-delay: 0.19s; }
+.stagger-4 { transition-delay: 0.26s; }
+
+/* ==================== HERO VISUAL (photo card) ==================== */
+.hero__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__photo-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  max-width: 480px;
+  width: 100%;
+}
+
+.hero__photo {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  display: block;
+}
+
+.hero__photo-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+}
+
+.hero__photo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(8px);
+  padding: 10px 18px;
+  border-radius: var(--radius-pill);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--teal);
+}
+
+.hero__panel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 3px rgba(0,137,123,0.20);
+  flex-shrink: 0;
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+
+@keyframes dot-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(0,137,123,0.20); }
+  50%       { box-shadow: 0 0 0 6px rgba(0,137,123,0.10); }
+}
+
+/* ==================== HERO ENTRANCE ANIMATIONS ==================== */
+@keyframes hero-fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.hero-anim-1 { animation: hero-fade-up 0.6s ease both; animation-delay: 0.1s; }
+.hero-anim-2 { animation: hero-fade-up 0.6s ease both; animation-delay: 0.22s; }
+.hero-anim-3 { animation: hero-fade-up 0.6s ease both; animation-delay: 0.34s; }
+.hero-anim-4 { animation: hero-fade-up 0.6s ease both; animation-delay: 0.46s; }
+.hero-anim-5 { animation: hero-fade-up 0.6s ease both; animation-delay: 0.58s; }
+.hero-anim-6 { animation: hero-fade-in 0.8s ease both; animation-delay: 0.15s; }
 
 /* ==================== UTILITY ==================== */
 .sr-only {

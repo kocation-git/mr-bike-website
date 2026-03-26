@@ -8,7 +8,6 @@ if (navToggle && navLinks) {
     navToggle.setAttribute('aria-expanded', isOpen);
   });
 
-  // Close menu when a nav link is clicked
   navLinks.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       navLinks.classList.remove('is-open');
@@ -16,7 +15,6 @@ if (navToggle && navLinks) {
     });
   });
 
-  // Close menu when clicking outside
   document.addEventListener('click', (e) => {
     if (!navToggle.contains(e.target) && !navLinks.contains(e.target)) {
       navLinks.classList.remove('is-open');
@@ -40,7 +38,6 @@ if (form) {
   const submitBtn = form.querySelector('button[type="submit"]');
   const originalBtnText = submitBtn ? submitBtn.textContent : 'Book My Repair →';
 
-  // Remove any existing success/error message element and create a fresh one
   let formMessage = document.getElementById('formMessage');
   if (!formMessage) {
     formMessage = document.createElement('p');
@@ -62,7 +59,6 @@ if (form) {
       details: (document.getElementById('details')?.value || '').trim(),
     };
 
-    // Basic client-side validation
     if (!data.name || data.name.length < 2) {
       document.getElementById('fullName')?.focus();
       showFormMessage(formMessage, '✗ Please enter your full name.', 'error');
@@ -89,7 +85,6 @@ if (form) {
       return;
     }
 
-    // Loading state
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.textContent = 'Sending…';
@@ -149,14 +144,88 @@ function showFormMessage(el, text, type) {
 }
 
 // ==================== SMOOTH ANCHOR SCROLL ====================
-// Offset scrolling to account for sticky nav height
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     const target = document.querySelector(this.getAttribute('href'));
     if (!target) return;
     e.preventDefault();
-    const navHeight = document.getElementById('nav')?.offsetHeight || 72;
+    const navHeight = document.getElementById('nav')?.offsetHeight || 96;
     const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
     window.scrollTo({ top, behavior: 'smooth' });
   });
 });
+
+// ==================== GSAP ANIMATIONS ====================
+if (typeof gsap !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Helper: scroll-triggered fade-up using fromTo (safe — never leaves elements invisible)
+  function fadeUp(targets, triggerEl, opts = {}) {
+    const defaults = { y: 28, duration: 0.55, stagger: 0, ease: 'power2.out', start: 'top 90%' };
+    const o = Object.assign({}, defaults, opts);
+    gsap.fromTo(targets,
+      { opacity: 0, y: o.y, x: o.x || 0 },
+      { opacity: 1, y: 0, x: 0, duration: o.duration, stagger: o.stagger, ease: o.ease,
+        scrollTrigger: { trigger: triggerEl, start: o.start, toggleActions: 'play none none none' }
+      }
+    );
+  }
+
+  // ── NAV entrance ──────────────────────────────────────
+  gsap.from('.nav__inner', {
+    y: -50, opacity: 0, duration: 0.8, ease: 'power3.out',
+  });
+
+  // ── HERO entrance (staggered timeline) ────────────────
+  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  heroTl
+    .from('.hero__badge',    { y: 24, opacity: 0, duration: 0.55 }, 0.25)
+    .from('.hero__headline', { y: 32, opacity: 0, duration: 0.65 }, 0.38)
+    .from('.hero__sub',      { y: 22, opacity: 0, duration: 0.55 }, 0.52)
+    .from('.hero__actions',  { y: 20, opacity: 0, duration: 0.50 }, 0.64)
+    .from('.hero__trust',    { y: 16, opacity: 0, duration: 0.45 }, 0.74)
+    .from('.hero__visual',   { x: 50, opacity: 0, duration: 0.80, ease: 'power2.out' }, 0.30);
+
+  // ── STATS ─────────────────────────────────────────────
+  fadeUp('.stats__item', '.stats', { stagger: 0.12 });
+
+  // Animated counters
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count, 10);
+    const suffix = el.dataset.suffix || '';
+    const obj    = { n: 0 };
+    gsap.to(obj, {
+      n: target,
+      duration: 1.5,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+      onUpdate() { el.textContent = Math.round(obj.n) + suffix; },
+    });
+  });
+
+  // ── SERVICES ──────────────────────────────────────────
+  fadeUp('.services .section-header', '.services', { y: 26, duration: 0.6 });
+  fadeUp('.service-card', '.services__grid', { y: 38, stagger: 0.08 });
+
+  // ── WHY MR. BIKE ──────────────────────────────────────
+  fadeUp('.why .section-header', '.why', { y: 26, duration: 0.6 });
+  fadeUp('.why-card', '.why__grid', { y: 32, stagger: 0.14 });
+
+  // ── HOW IT WORKS ──────────────────────────────────────
+  fadeUp('.how .section-header', '.how', { y: 26, duration: 0.6 });
+  fadeUp('.how__step', '.how__grid', { stagger: 0.16 });
+  fadeUp('.how__connector', '.how__grid', { duration: 0.3 });
+
+  // ── FAQ ───────────────────────────────────────────────
+  fadeUp('.faq .section-header', '.faq', { y: 22 });
+  fadeUp('.faq__item', '.faq__list', { y: 20, stagger: 0.08, duration: 0.45 });
+
+  // ── BOOKING ───────────────────────────────────────────
+  fadeUp('.booking .section-header', '.booking', { y: 22 });
+  fadeUp('.booking__form-wrap', '.booking__grid', { x: -32, y: 0, duration: 0.65 });
+  fadeUp('.booking__info', '.booking__grid', { x: 32, y: 0, duration: 0.65 });
+  fadeUp('.booking-info-card', '.booking__info', { y: 16, stagger: 0.10, duration: 0.45 });
+
+  // Recalculate trigger positions after layout settles
+  ScrollTrigger.refresh();
+}
