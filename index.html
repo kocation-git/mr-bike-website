@@ -1,292 +1,863 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mr. Bike — Bike Repair Delivery Service</title>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mr. Bike — Copenhagen's #1 Mobile Bike Repair Service</title>
+  <meta name="description" content="Professional mobile bike repair service in Copenhagen. We come to your door — flat tires, brake adjustments, tune-ups and more. Same-day service available." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- ======== NAVIGATION ======== -->
   <nav class="nav" id="nav">
-    <div class="container nav-inner">
-      <a href="#" class="logo">🚲 Mr. Bike</a>
-      <ul class="nav-links">
+    <div class="nav__inner container">
+      <a href="#" class="nav__logo">
+        <span class="nav__logo-icon">🚲</span>
+        <span class="nav__logo-text">Mr. Bike</span>
+      </a>
+      <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul class="nav__links" id="navLinks">
         <li><a href="#services">Services</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
-        <li><a href="#booking">Book Now</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#booking" class="btn btn--orange btn--sm">Book Now</a></li>
       </ul>
-      <a href="https://wa.me/4591610013" target="_blank" class="btn btn-whatsapp nav-wa">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-        WhatsApp
-      </a>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <div class="hero-text">
-        <span class="badge">🔧 Bike Repair — We Come to You</span>
-        <h1>Your Bike's<br>Broken? <span class="highlight">Relax.</span></h1>
-        <p>We're the bike nerds who come to <em>you</em>. No carrying, no waiting, no excuses. Just your bike, fixed — right at your door. 🛠️</p>
-        <div class="hero-btns">
-          <a href="#booking" class="btn btn-primary">Book a Repair</a>
-          <a href="https://wa.me/4591610013" target="_blank" class="btn btn-whatsapp">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            Chat on WhatsApp
-          </a>
+  <!-- ======== HERO ======== -->
+  <section class="hero" id="home">
+    <div class="container hero__grid">
+      <div class="hero__content">
+        <div class="hero__badge">
+          <span>🏆</span> Copenhagen's #1 Bike Mechanic
+        </div>
+        <h1 class="hero__headline">
+          Your Bike Deserves Better Than a Dusty Shop.
+        </h1>
+        <p class="hero__sub">
+          Professional mobile bike repair — we come to your door, your office, or wherever you are. Fast, reliable, and friendly service across Copenhagen.
+        </p>
+        <div class="hero__actions">
+          <a href="#booking" class="btn btn--orange btn--lg">Book a Repair</a>
+          <a href="#services" class="btn btn--outline-dark btn--lg">See All Services</a>
+        </div>
+        <div class="hero__trust">
+          <div class="hero__trust-item">
+            <span class="hero__trust-stars">★★★★★</span>
+            <span>500+ happy cyclists</span>
+          </div>
+          <div class="hero__trust-divider"></div>
+          <div class="hero__trust-item">⚡ Same-day available</div>
         </div>
       </div>
-      <div class="hero-visual">
-        <div class="hero-card">
-          <div class="hero-icon">🚲</div>
-          <div class="hero-stats">
-            <div class="stat-item">
-              <span class="stat-num">⚡</span>
-              <span class="stat-label">Same-day service</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-num">📍</span>
-              <span class="stat-label">We come to you</span>
-            </div>
-            <div class="stat-item">
-              <span class="stat-num">🔧</span>
-              <span class="stat-label">Expert mechanics</span>
-            </div>
-          </div>
+
+      <!-- Hero SVG illustration — friendly mechanic fixing a bike -->
+      <div class="hero__illustration" aria-hidden="true">
+        <svg viewBox="0 0 480 440" xmlns="http://www.w3.org/2000/svg" class="hero__svg">
+          <!-- Ground shadow -->
+          <ellipse cx="240" cy="415" rx="170" ry="16" fill="#CBD5E1" opacity="0.45"/>
+
+          <!-- BIKE -->
+          <g transform="translate(80,160)">
+            <!-- Rear wheel -->
+            <circle cx="48" cy="158" r="70" fill="none" stroke="#0B1F3A" stroke-width="10"/>
+            <circle cx="48" cy="158" r="56" fill="none" stroke="#E2E8F0" stroke-width="2.5"/>
+            <circle cx="48" cy="158" r="10" fill="#0B1F3A"/>
+            <line x1="48" y1="88" x2="48" y2="228" stroke="#0B1F3A" stroke-width="3"/>
+            <line x1="-22" y1="118" x2="118" y2="198" stroke="#0B1F3A" stroke-width="3"/>
+            <line x1="-22" y1="198" x2="118" y2="118" stroke="#0B1F3A" stroke-width="3"/>
+
+            <!-- Front wheel -->
+            <circle cx="228" cy="158" r="70" fill="none" stroke="#0B1F3A" stroke-width="10"/>
+            <circle cx="228" cy="158" r="56" fill="none" stroke="#E2E8F0" stroke-width="2.5"/>
+            <circle cx="228" cy="158" r="10" fill="#0B1F3A"/>
+            <line x1="228" y1="88" x2="228" y2="228" stroke="#0B1F3A" stroke-width="3"/>
+            <line x1="158" y1="118" x2="298" y2="198" stroke="#0B1F3A" stroke-width="3"/>
+            <line x1="158" y1="198" x2="298" y2="118" stroke="#0B1F3A" stroke-width="3"/>
+
+            <!-- Frame -->
+            <line x1="48" y1="158" x2="138" y2="96" stroke="#FF6B2C" stroke-width="9" stroke-linecap="round"/>
+            <line x1="48" y1="158" x2="110" y2="52" stroke="#FF6B2C" stroke-width="9" stroke-linecap="round"/>
+            <line x1="228" y1="158" x2="138" y2="96" stroke="#0B1F3A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="110" y1="52" x2="208" y2="48" stroke="#0B1F3A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="208" y1="48" x2="228" y2="158" stroke="#0B1F3A" stroke-width="9" stroke-linecap="round"/>
+            <line x1="138" y1="96" x2="110" y2="52" stroke="#0B1F3A" stroke-width="9" stroke-linecap="round"/>
+            <circle cx="138" cy="96" r="14" fill="#FF6B2C"/>
+
+            <!-- Saddle -->
+            <rect x="88" y="38" width="48" height="11" rx="5.5" fill="#1E3A5F"/>
+            <line x1="112" y1="49" x2="112" y2="66" stroke="#1E3A5F" stroke-width="7" stroke-linecap="round"/>
+
+            <!-- Handlebar -->
+            <line x1="208" y1="48" x2="218" y2="22" stroke="#1E3A5F" stroke-width="7" stroke-linecap="round"/>
+            <line x1="204" y1="20" x2="232" y2="20" stroke="#1E3A5F" stroke-width="7" stroke-linecap="round"/>
+
+            <!-- Chain -->
+            <path d="M138,108 Q90,130 48,152" fill="none" stroke="#64748B" stroke-width="4" stroke-dasharray="7,4"/>
+          </g>
+
+          <!-- MECHANIC CHARACTER -->
+          <g transform="translate(268,88)">
+            <!-- Helmet -->
+            <ellipse cx="58" cy="22" rx="38" ry="24" fill="#FF6B2C"/>
+            <rect x="21" y="29" width="74" height="11" rx="5.5" fill="#EA580C"/>
+            <line x1="38" y1="10" x2="36" y2="27" stroke="#EA580C" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="58" y1="5" x2="58" y2="24" stroke="#EA580C" stroke-width="3.5" stroke-linecap="round"/>
+            <line x1="78" y1="10" x2="80" y2="27" stroke="#EA580C" stroke-width="3.5" stroke-linecap="round"/>
+
+            <!-- Head -->
+            <circle cx="58" cy="56" r="38" fill="#FBBF24"/>
+
+            <!-- Eyes -->
+            <circle cx="44" cy="52" r="6.5" fill="white"/>
+            <circle cx="72" cy="52" r="6.5" fill="white"/>
+            <circle cx="45.5" cy="53" r="3.5" fill="#0B1F3A"/>
+            <circle cx="73.5" cy="53" r="3.5" fill="#0B1F3A"/>
+            <circle cx="47" cy="51" r="1.5" fill="white"/>
+            <circle cx="75" cy="51" r="1.5" fill="white"/>
+
+            <!-- Smile -->
+            <path d="M40,68 Q58,84 76,68" fill="none" stroke="#0B1F3A" stroke-width="3.5" stroke-linecap="round"/>
+
+            <!-- Cheeks -->
+            <circle cx="32" cy="64" r="7" fill="#FCA5A5" opacity="0.55"/>
+            <circle cx="84" cy="64" r="7" fill="#FCA5A5" opacity="0.55"/>
+
+            <!-- Body / overalls -->
+            <rect x="18" y="90" width="80" height="96" rx="22" fill="#2563EB"/>
+            <rect x="30" y="90" width="56" height="44" rx="12" fill="#1D4ED8"/>
+            <!-- Bib pocket -->
+            <rect x="40" y="100" width="36" height="22" rx="5" fill="#3B82F6"/>
+            <line x1="58" y1="100" x2="58" y2="122" stroke="#2563EB" stroke-width="2"/>
+
+            <!-- Left arm holding wrench -->
+            <g transform="rotate(-28, 18, 100)">
+              <rect x="0" y="90" width="28" height="64" rx="14" fill="#2563EB"/>
+            </g>
+            <!-- Right arm -->
+            <g transform="rotate(22, 98, 100)">
+              <rect x="90" y="90" width="28" height="68" rx="14" fill="#2563EB"/>
+            </g>
+
+            <!-- Legs -->
+            <rect x="22" y="168" width="32" height="54" rx="14" fill="#2563EB"/>
+            <rect x="62" y="168" width="32" height="54" rx="14" fill="#2563EB"/>
+
+            <!-- Shoes -->
+            <ellipse cx="38" cy="224" rx="22" ry="11" fill="#0B1F3A"/>
+            <ellipse cx="78" cy="224" rx="22" ry="11" fill="#0B1F3A"/>
+
+            <!-- Wrench in left hand -->
+            <g transform="translate(-44, 138) rotate(-50)">
+              <rect x="0" y="0" width="11" height="52" rx="5.5" fill="#94A3B8"/>
+              <rect x="-7" y="-6" width="25" height="15" rx="5" fill="#94A3B8"/>
+              <rect x="1" y="-4" width="9" height="9" rx="2.5" fill="#E2E8F0"/>
+              <rect x="-7" y="44" width="25" height="12" rx="5" fill="#94A3B8"/>
+            </g>
+          </g>
+
+          <!-- Toolbox -->
+          <g transform="translate(52,302)">
+            <rect x="0" y="22" width="96" height="58" rx="9" fill="#FF6B2C"/>
+            <rect x="0" y="22" width="96" height="16" rx="9" fill="#EA580C"/>
+            <rect x="32" y="10" width="32" height="22" rx="7" fill="#EA580C"/>
+            <!-- Tools sticking out -->
+            <line x1="20" y1="22" x2="17" y2="2" stroke="#94A3B8" stroke-width="5.5" stroke-linecap="round"/>
+            <circle cx="17" cy="2" r="7" fill="#64748B"/>
+            <line x1="50" y1="22" x2="52" y2="3" stroke="#94A3B8" stroke-width="4.5" stroke-linecap="round"/>
+            <rect x="46" y="-3" width="13" height="9" rx="3" fill="#64748B"/>
+            <line x1="76" y1="22" x2="74" y2="4" stroke="#94A3B8" stroke-width="4.5" stroke-linecap="round"/>
+            <circle cx="74" cy="4" r="6" fill="#FBBF24"/>
+          </g>
+
+          <!-- Decorative sparkles -->
+          <text x="48" y="148" font-size="24" fill="#FF6B2C" opacity="0.75">✦</text>
+          <text x="400" y="108" font-size="20" fill="#FBBF24" opacity="0.85">✦</text>
+          <text x="420" y="248" font-size="15" fill="#FF6B2C" opacity="0.65">★</text>
+          <text x="62" y="270" font-size="17" fill="#FBBF24" opacity="0.75">★</text>
+          <text x="390" y="330" font-size="12" fill="#0B1F3A" opacity="0.3">●</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== STATS BAR ======== -->
+  <section class="stats">
+    <div class="container stats__grid">
+      <div class="stats__item">
+        <span class="stats__icon">🔧</span>
+        <div>
+          <div class="stats__number">500+</div>
+          <div class="stats__label">Bikes Fixed</div>
+        </div>
+      </div>
+      <div class="stats__item">
+        <span class="stats__icon">⚡</span>
+        <div>
+          <div class="stats__number">Same-Day</div>
+          <div class="stats__label">Service Available</div>
+        </div>
+      </div>
+      <div class="stats__item">
+        <span class="stats__icon">🌟</span>
+        <div>
+          <div class="stats__number">5★</div>
+          <div class="stats__label">Average Rating</div>
+        </div>
+      </div>
+      <div class="stats__item">
+        <span class="stats__icon">📍</span>
+        <div>
+          <div class="stats__number">Door-to-Door</div>
+          <div class="stats__label">We Come to You</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- MARQUEE DIVIDER -->
-  <div class="divider">
-    <div class="divider-track">
-      <div class="divider-item"><span>🔧</span> Flat Tire Repair</div>
-      <div class="divider-item"><span>🛑</span> Brake Fix</div>
-      <div class="divider-item"><span>⚙️</span> Gear Tuning</div>
-      <div class="divider-item"><span>🔗</span> Chain Service</div>
-      <div class="divider-item"><span>🔩</span> Full Tune-Up</div>
-      <div class="divider-item"><span>☸️</span> Wheel Truing</div>
-      <div class="divider-item"><span>🚲</span> We Come to You</div>
-      <div class="divider-item"><span>⚡</span> Same Day Available</div>
-      <!-- duplicate for seamless loop -->
-      <div class="divider-item"><span>🔧</span> Flat Tire Repair</div>
-      <div class="divider-item"><span>🛑</span> Brake Fix</div>
-      <div class="divider-item"><span>⚙️</span> Gear Tuning</div>
-      <div class="divider-item"><span>🔗</span> Chain Service</div>
-      <div class="divider-item"><span>🔩</span> Full Tune-Up</div>
-      <div class="divider-item"><span>☸️</span> Wheel Truing</div>
-      <div class="divider-item"><span>🚲</span> We Come to You</div>
-      <div class="divider-item"><span>⚡</span> Same Day Available</div>
-    </div>
-  </div>
-
-  <!-- SERVICES -->
+  <!-- ======== SERVICES ======== -->
   <section class="services" id="services">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">What We Fix</span>
-        <h2>Our Services</h2>
-        <p>From quick fixes to full overhauls — we handle it all, right at your location.</p>
+        <h2 class="section-title">Everything Your Bike Needs</h2>
+        <p class="section-sub">From quick fixes to full overhauls — we handle it all, right at your doorstep.</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card">
-          <div class="service-icon">🛞</div>
-          <h3>Flat Tire Repair</h3>
-          <p>Inner tube replacement, puncture patching, and tyre inspection on the spot.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🛑</div>
-          <h3>Brake Adjustment</h3>
-          <p>Brake pad replacement, cable tensioning, and brake lever adjustment for safe stopping.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">⚙️</div>
-          <h3>Gear & Derailleur Tuning</h3>
-          <p>Smooth, precise shifting — front and rear derailleur indexing and cable replacement.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🔗</div>
-          <h3>Chain Service</h3>
-          <p>Chain cleaning, lubrication, wear check, and replacement to extend drivetrain life.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🔩</div>
-          <h3>Full Bike Tune-Up</h3>
-          <p>Complete inspection and adjustment of all components — the full workshop experience at home.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">☸️</div>
-          <h3>Wheel Truing</h3>
-          <p>Spoke tensioning and wheel alignment to eliminate wobbles and improve ride quality.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🔨</div>
-          <h3>Bike Assembly</h3>
-          <p>New bike assembly and fitting — handlebars, saddle height, and component setup.</p>
-        </div>
-        <div class="service-card">
-          <div class="service-icon">🔍</div>
-          <h3>Inspection & Diagnostics</h3>
-          <p>Full safety check and diagnosis — ideal before a long ride or after a crash.</p>
-        </div>
+      <div class="services__grid">
+
+        <!-- 1. Flat Tire Repair -->
+        <article class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+              <!-- Outer tire -->
+              <circle cx="48" cy="48" r="40" fill="#E0F2FE" stroke="#0B1F3A" stroke-width="6"/>
+              <!-- Inner rim -->
+              <circle cx="48" cy="48" r="26" fill="none" stroke="#CBD5E1" stroke-width="3"/>
+              <!-- Hub -->
+              <circle cx="48" cy="48" r="8" fill="#0B1F3A"/>
+              <!-- Spokes -->
+              <line x1="48" y1="8" x2="48" y2="88" stroke="#0B1F3A" stroke-width="2.5"/>
+              <line x1="8" y1="48" x2="88" y2="48" stroke="#0B1F3A" stroke-width="2.5"/>
+              <line x1="20" y1="20" x2="76" y2="76" stroke="#0B1F3A" stroke-width="2.5"/>
+              <line x1="76" y1="20" x2="20" y2="76" stroke="#0B1F3A" stroke-width="2.5"/>
+              <!-- Patch sticker -->
+              <rect x="55" y="18" width="26" height="18" rx="5" fill="#FF6B2C" transform="rotate(18,68,27)"/>
+              <line x1="59" y1="24" x2="74" y2="24" stroke="white" stroke-width="2.5" transform="rotate(18,68,27)"/>
+              <line x1="59" y1="30" x2="74" y2="30" stroke="white" stroke-width="2.5" transform="rotate(18,68,27)"/>
+              <!-- Happy face on wheel center -->
+              <circle cx="38" cy="42" r="4.5" fill="white" stroke="#0B1F3A" stroke-width="1.5"/>
+              <circle cx="39" cy="43" r="1.8" fill="#0B1F3A"/>
+              <path d="M31,54 Q38,62 45,54" fill="none" stroke="#0B1F3A" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__name">Flat Tire Repair</h3>
+            <p class="service-card__desc">Quick tube replacement or patch. Back rolling in no time — most common fix.</p>
+            <span class="service-card__tag">~30 min</span>
+          </div>
+        </article>
+
+        <!-- 2. Brake Adjustment -->
+        <article class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+              <!-- Brake lever body -->
+              <rect x="18" y="26" width="60" height="20" rx="10" fill="#0B1F3A"/>
+              <rect x="18" y="28" width="60" height="10" rx="8" fill="#1E3A5F"/>
+              <!-- Lever arm -->
+              <rect x="38" y="46" width="20" height="32" rx="10" fill="#FF6B2C"/>
+              <rect x="42" y="78" width="12" height="12" rx="6" fill="#EA580C"/>
+              <!-- Cable line -->
+              <path d="M48,90 Q28,92 16,96" fill="none" stroke="#64748B" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- Motion lines (left side) -->
+              <line x1="4" y1="32" x2="16" y2="32" stroke="#FF6B2C" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
+              <line x1="2" y1="40" x2="16" y2="40" stroke="#FF6B2C" stroke-width="3" stroke-linecap="round" opacity="0.55"/>
+              <line x1="6" y1="24" x2="16" y2="24" stroke="#FF6B2C" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+              <!-- Grip texture dots -->
+              <circle cx="54" cy="36" r="2.5" fill="#64748B"/>
+              <circle cx="63" cy="36" r="2.5" fill="#64748B"/>
+              <circle cx="72" cy="36" r="2.5" fill="#64748B"/>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__name">Brake Adjustment</h3>
+            <p class="service-card__desc">Precise cable tensioning and pad alignment for safe, responsive stopping.</p>
+            <span class="service-card__tag">~20 min</span>
+          </div>
+        </article>
+
+        <!-- 3. Gear & Derailleur Tuning -->
+        <article class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+              <!-- Gear cog -->
+              <circle cx="42" cy="50" r="22" fill="#FBBF24" stroke="#0B1F3A" stroke-width="4"/>
+              <circle cx="42" cy="50" r="10" fill="#0B1F3A"/>
+              <circle cx="42" cy="50" r="5" fill="#FBBF24"/>
+              <!-- Gear teeth (8 teeth) -->
+              <rect x="38" y="22" width="8" height="11" rx="3" fill="#FBBF24" stroke="#0B1F3A" stroke-width="2.5"/>
+              <rect x="38" y="67" width="8" height="11" rx="3" fill="#FBBF24" stroke="#0B1F3A" stroke-width="2.5"/>
+              <rect x="17" y="46" width="11" height="8" rx="3" fill="#FBBF24" stroke="#0B1F3A" stroke-width="2.5"/>
+              <rect x="62" y="46" width="11" height="8" rx="3" fill="#FBBF24" stroke="#0B1F3A" stroke-width="2.5"/>
+              <rect x="22" y="24" width="9" height="11" rx="3" fill="#FBBF24" stroke="#0B1F3A" stroke-width="2" transform="rotate(-45,26.5,29.5)"/>
+              <rect x="54" y="63" width="9" height="11" rx="3" fill="#FBBF24" stroke="#0B1F3A" stroke-width="2" transform="rotate(-45,58.5,68.5)"/>
+              <rect x="54" y="24" width="9" height="11" rx="3" fill="#FBBF24" stroke="#0B1F3A" stroke-width="2" transform="rotate(45,58.5,29.5)"/>
+              <rect x="22" y="63" width="9" height="11" rx="3" fill="#FBBF24" stroke="#0B1F3A" stroke-width="2" transform="rotate(45,26.5,68.5)"/>
+              <!-- Wrench overlay -->
+              <g transform="translate(54,30) rotate(42)">
+                <rect x="0" y="0" width="9" height="40" rx="4.5" fill="#94A3B8"/>
+                <rect x="-6" y="-5" width="21" height="14" rx="5" fill="#94A3B8"/>
+                <rect x="1" y="-3" width="7" height="8" rx="2.5" fill="#E2E8F0"/>
+                <rect x="-6" y="33" width="21" height="12" rx="5" fill="#94A3B8"/>
+              </g>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__name">Gear &amp; Derailleur Tuning</h3>
+            <p class="service-card__desc">Smooth, precise shifting across all gears. No more skipping or grinding.</p>
+            <span class="service-card__tag">~35 min</span>
+          </div>
+        </article>
+
+        <!-- 4. Chain Service -->
+        <article class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+              <!-- Chain links -->
+              <rect x="6" y="38" width="24" height="22" rx="11" fill="none" stroke="#475569" stroke-width="5"/>
+              <rect x="8" y="42" width="20" height="14" rx="7" fill="#94A3B8"/>
+              <!-- Link 2 (rotated) -->
+              <g transform="rotate(90, 42, 49)">
+                <rect x="30" y="38" width="24" height="22" rx="11" fill="none" stroke="#475569" stroke-width="5"/>
+                <rect x="32" y="42" width="20" height="14" rx="7" fill="#94A3B8"/>
+              </g>
+              <!-- Link 3 -->
+              <rect x="54" y="38" width="24" height="22" rx="11" fill="none" stroke="#475569" stroke-width="5"/>
+              <rect x="56" y="42" width="20" height="14" rx="7" fill="#94A3B8"/>
+              <!-- Link 4 (rotated) -->
+              <g transform="rotate(90, 90, 49)">
+                <rect x="78" y="38" width="24" height="22" rx="11" fill="none" stroke="#475569" stroke-width="5"/>
+                <rect x="80" y="42" width="20" height="14" rx="7" fill="#94A3B8"/>
+              </g>
+              <!-- Oil drop -->
+              <path d="M50,16 Q54,7 58,16 Q63,26 58,31 Q50,36 44,31 Q40,26 50,16Z" fill="#FBBF24"/>
+              <!-- Sparkle stars -->
+              <text x="14" y="30" font-size="14" fill="#FF6B2C">✦</text>
+              <text x="60" y="26" font-size="11" fill="#FBBF24">★</text>
+              <text x="76" y="78" font-size="13" fill="#FF6B2C">✦</text>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__name">Chain Service</h3>
+            <p class="service-card__desc">Cleaning, lubrication, and replacement if needed. Extends drivetrain life significantly.</p>
+            <span class="service-card__tag">~25 min</span>
+          </div>
+        </article>
+
+        <!-- 5. Full Bike Tune-Up (Most Popular) -->
+        <article class="service-card service-card--popular">
+          <div class="service-card__popular-badge">Most Popular ⭐</div>
+          <div class="service-card__icon">
+            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+              <!-- Stars background -->
+              <text x="4" y="28" font-size="17" fill="#FBBF24">★</text>
+              <text x="72" y="20" font-size="22" fill="#FF6B2C">★</text>
+              <text x="60" y="88" font-size="15" fill="#FBBF24">★</text>
+              <text x="76" y="74" font-size="10" fill="#FF6B2C">✦</text>
+              <text x="10" y="78" font-size="11" fill="#FBBF24">✦</text>
+              <!-- Double-headed wrench -->
+              <g transform="translate(24,16) rotate(42)">
+                <rect x="0" y="0" width="13" height="62" rx="6.5" fill="#94A3B8"/>
+                <rect x="-9" y="-7" width="31" height="18" rx="7" fill="#94A3B8"/>
+                <rect x="2" y="-5" width="9" height="11" rx="3" fill="#E2E8F0"/>
+                <rect x="-9" y="52" width="31" height="16" rx="7" fill="#94A3B8"/>
+                <rect x="2" y="54" width="9" height="10" rx="3" fill="#E2E8F0"/>
+              </g>
+              <!-- Shine lines -->
+              <line x1="70" y1="46" x2="82" y2="40" stroke="#FBBF24" stroke-width="3" stroke-linecap="round"/>
+              <line x1="72" y1="55" x2="86" y2="55" stroke="#FBBF24" stroke-width="3" stroke-linecap="round"/>
+              <line x1="70" y1="64" x2="82" y2="70" stroke="#FBBF24" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__name">Full Bike Tune-Up</h3>
+            <p class="service-card__desc">Complete overhaul — brakes, gears, chain, wheels, all bolts. Your bike like new.</p>
+            <span class="service-card__tag service-card__tag--orange">~90 min</span>
+          </div>
+        </article>
+
+        <!-- 6. Wheel Truing -->
+        <article class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+              <!-- Wheel -->
+              <circle cx="44" cy="50" r="34" fill="none" stroke="#0B1F3A" stroke-width="5.5"/>
+              <circle cx="44" cy="50" r="22" fill="none" stroke="#CBD5E1" stroke-width="2"/>
+              <circle cx="44" cy="50" r="8" fill="#FF6B2C"/>
+              <!-- Spokes -->
+              <line x1="44" y1="16" x2="44" y2="84" stroke="#0B1F3A" stroke-width="2.5"/>
+              <line x1="10" y1="50" x2="78" y2="50" stroke="#0B1F3A" stroke-width="2.5"/>
+              <line x1="20" y1="26" x2="68" y2="74" stroke="#0B1F3A" stroke-width="2.5"/>
+              <line x1="68" y1="26" x2="20" y2="74" stroke="#0B1F3A" stroke-width="2.5"/>
+              <!-- Ruler -->
+              <rect x="68" y="18" width="14" height="64" rx="4" fill="#FBBF24" stroke="#0B1F3A" stroke-width="2"/>
+              <line x1="72" y1="26" x2="78" y2="26" stroke="#0B1F3A" stroke-width="2"/>
+              <line x1="72" y1="34" x2="76" y2="34" stroke="#0B1F3A" stroke-width="1.5"/>
+              <line x1="72" y1="42" x2="78" y2="42" stroke="#0B1F3A" stroke-width="2"/>
+              <line x1="72" y1="50" x2="76" y2="50" stroke="#0B1F3A" stroke-width="1.5"/>
+              <line x1="72" y1="58" x2="78" y2="58" stroke="#0B1F3A" stroke-width="2"/>
+              <line x1="72" y1="66" x2="76" y2="66" stroke="#0B1F3A" stroke-width="1.5"/>
+              <line x1="72" y1="74" x2="78" y2="74" stroke="#0B1F3A" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__name">Wheel Truing</h3>
+            <p class="service-card__desc">Spoke tension adjustment to eliminate wobbles and improve tracking and stability.</p>
+            <span class="service-card__tag">~40 min</span>
+          </div>
+        </article>
+
+        <!-- 7. Bike Assembly -->
+        <article class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+              <!-- Rear wheel (dashed = partially assembled) -->
+              <circle cx="22" cy="68" r="18" fill="none" stroke="#0B1F3A" stroke-width="4.5" stroke-dasharray="7,4"/>
+              <!-- Front wheel (solid = assembled) -->
+              <circle cx="74" cy="68" r="18" fill="none" stroke="#0B1F3A" stroke-width="4.5"/>
+              <circle cx="74" cy="68" r="6" fill="#0B1F3A"/>
+              <!-- Frame partial -->
+              <line x1="22" y1="68" x2="48" y2="42" stroke="#FF6B2C" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="9,5"/>
+              <line x1="74" y1="68" x2="48" y2="42" stroke="#0B1F3A" stroke-width="5.5" stroke-linecap="round"/>
+              <line x1="48" y1="42" x2="36" y2="28" stroke="#0B1F3A" stroke-width="5.5" stroke-linecap="round"/>
+              <!-- Bolt indicators -->
+              <circle cx="22" cy="68" r="7" fill="#FBBF24" stroke="#0B1F3A" stroke-width="2"/>
+              <line x1="19" y1="68" x2="25" y2="68" stroke="#0B1F3A" stroke-width="2.5"/>
+              <line x1="22" y1="65" x2="22" y2="71" stroke="#0B1F3A" stroke-width="2.5"/>
+              <circle cx="48" cy="42" r="7" fill="#FF6B2C" stroke="#0B1F3A" stroke-width="2"/>
+              <line x1="45" y1="42" x2="51" y2="42" stroke="white" stroke-width="2.5"/>
+              <line x1="48" y1="39" x2="48" y2="45" stroke="white" stroke-width="2.5"/>
+              <!-- Sparkle -->
+              <text x="66" y="22" font-size="14" fill="#FBBF24">✦</text>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__name">Bike Assembly</h3>
+            <p class="service-card__desc">Got a new bike in a box? We'll build it up safely, correctly, and ready to ride.</p>
+            <span class="service-card__tag">~60 min</span>
+          </div>
+        </article>
+
+        <!-- 8. General Inspection -->
+        <article class="service-card">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+              <!-- Magnifying glass lens -->
+              <circle cx="38" cy="40" r="28" fill="#E0F2FE" stroke="#0B1F3A" stroke-width="5.5"/>
+              <circle cx="38" cy="40" r="20" fill="white" stroke="#E2E8F0" stroke-width="2"/>
+              <!-- Mini bike inside lens -->
+              <circle cx="26" cy="47" r="7" fill="none" stroke="#0B1F3A" stroke-width="2.5"/>
+              <circle cx="50" cy="47" r="7" fill="none" stroke="#0B1F3A" stroke-width="2.5"/>
+              <line x1="26" y1="47" x2="38" y2="33" stroke="#FF6B2C" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="50" y1="47" x2="38" y2="33" stroke="#0B1F3A" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="38" y1="33" x2="33" y2="26" stroke="#0B1F3A" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="38" cy="40" r="3.5" fill="#FF6B2C"/>
+              <!-- Handle -->
+              <line x1="60" y1="62" x2="82" y2="84" stroke="#0B1F3A" stroke-width="9" stroke-linecap="round"/>
+              <line x1="60" y1="62" x2="82" y2="84" stroke="#64748B" stroke-width="6" stroke-linecap="round"/>
+              <!-- Green checkmark badge -->
+              <circle cx="70" cy="22" r="14" fill="#22C55E"/>
+              <path d="M62,22 L68,28 L78,16" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__name">General Inspection</h3>
+            <p class="service-card__desc">Full 20-point safety check with written report. Know exactly what needs attention.</p>
+            <span class="service-card__tag">~30 min</span>
+          </div>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
-  <section class="how-it-works" id="how-it-works">
+  <!-- ======== WHY MR. BIKE ======== -->
+  <section class="why" id="why">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">The Process</span>
-        <h2>How It Works</h2>
-        <p>Three simple steps to get your bike back in shape.</p>
+        <h2 class="section-title">Why Hundreds of Cyclists Choose Us</h2>
+        <p class="section-sub">We built Mr. Bike because we love cycling — and hate wasting time at repair shops.</p>
       </div>
-      <div class="steps">
-        <div class="step">
-          <div class="step-number">01</div>
-          <h3>Book Online</h3>
-          <p>Fill in the booking form below with your service, preferred date, and address.</p>
+      <div class="why__grid">
+
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <!-- Van body -->
+              <rect x="4" y="28" width="60" height="34" rx="8" fill="#0B1F3A"/>
+              <rect x="4" y="28" width="32" height="24" rx="6" fill="#1E3A5F"/>
+              <rect x="8" y="32" width="24" height="16" rx="4" fill="#7DD3FC"/>
+              <line x1="38" y1="30" x2="38" y2="62" stroke="#0F2D50" stroke-width="2.5"/>
+              <!-- Wheels -->
+              <circle cx="18" cy="62" r="10" fill="#1E3A5F" stroke="#0B1F3A" stroke-width="2"/>
+              <circle cx="18" cy="62" r="5" fill="#94A3B8"/>
+              <circle cx="50" cy="62" r="10" fill="#1E3A5F" stroke="#0B1F3A" stroke-width="2"/>
+              <circle cx="50" cy="62" r="5" fill="#94A3B8"/>
+              <!-- Map pin floating above -->
+              <path d="M68,26 Q60,18 60,12 Q60,4 68,4 Q76,4 76,12 Q76,18 68,26Z" fill="#FF6B2C"/>
+              <circle cx="68" cy="12" r="5.5" fill="white"/>
+              <!-- Motion lines -->
+              <line x1="0" y1="36" x2="6" y2="36" stroke="#FF6B2C" stroke-width="2.5" stroke-linecap="round" opacity="0.7"/>
+              <line x1="0" y1="44" x2="5" y2="44" stroke="#FF6B2C" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+              <line x1="0" y1="52" x2="6" y2="52" stroke="#FF6B2C" stroke-width="2" stroke-linecap="round" opacity="0.35"/>
+            </svg>
+          </div>
+          <h3 class="why-card__title">We Come to You</h3>
+          <p class="why-card__desc">Book online and we'll show up at your home, office, or park. Zero shop trips, zero waiting rooms, zero hassle. You don't even have to leave your desk.</p>
         </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-          <div class="step-number">02</div>
-          <h3>We Come to You</h3>
-          <p>Our mechanic arrives at your location with all the tools and parts needed.</p>
+
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <!-- Helmet -->
+              <path d="M12,46 Q12,18 40,16 Q68,18 68,46 Z" fill="#FF6B2C"/>
+              <rect x="8" y="46" width="64" height="12" rx="6" fill="#EA580C"/>
+              <path d="M18,46 Q18,28 40,26 Q62,28 62,46" fill="none" stroke="#EA580C" stroke-width="3"/>
+              <!-- Vent lines -->
+              <line x1="28" y1="22" x2="26" y2="40" stroke="#EA580C" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="40" y1="18" x2="40" y2="38" stroke="#EA580C" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="52" y1="22" x2="54" y2="40" stroke="#EA580C" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- Chin strap -->
+              <line x1="14" y1="58" x2="18" y2="68" stroke="#EA580C" stroke-width="3" stroke-linecap="round"/>
+              <line x1="66" y1="58" x2="62" y2="68" stroke="#EA580C" stroke-width="3" stroke-linecap="round"/>
+              <!-- Certified badge circle -->
+              <circle cx="62" cy="20" r="15" fill="#0B1F3A"/>
+              <!-- Wrench icon in badge -->
+              <g transform="translate(54,12) rotate(42)">
+                <rect x="0" y="0" width="5.5" height="22" rx="2.75" fill="#94A3B8"/>
+                <rect x="-3.5" y="-2.5" width="12.5" height="7" rx="3" fill="#94A3B8"/>
+              </g>
+              <text x="57" y="26" font-size="11" fill="#FBBF24">★</text>
+            </svg>
+          </div>
+          <h3 class="why-card__title">Expert Mechanics</h3>
+          <p class="why-card__desc">Certified, experienced, and genuinely passionate about bikes. We treat your ride like our own and stand behind every repair we do.</p>
         </div>
-        <div class="step-arrow">→</div>
-        <div class="step">
-          <div class="step-number">03</div>
-          <h3>Ride Again</h3>
-          <p>Your bike is fixed and ready to go — no transport, no waiting at a shop.</p>
+
+        <div class="why-card">
+          <div class="why-card__icon">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <!-- Clock -->
+              <circle cx="36" cy="40" r="28" fill="#E0F2FE" stroke="#0B1F3A" stroke-width="4"/>
+              <circle cx="36" cy="40" r="22" fill="white"/>
+              <circle cx="36" cy="40" r="4" fill="#0B1F3A"/>
+              <!-- Hands -->
+              <line x1="36" y1="40" x2="36" y2="22" stroke="#0B1F3A" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="36" y1="40" x2="50" y2="48" stroke="#FF6B2C" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- Hour markers -->
+              <line x1="36" y1="14" x2="36" y2="19" stroke="#0B1F3A" stroke-width="3"/>
+              <line x1="36" y1="61" x2="36" y2="66" stroke="#0B1F3A" stroke-width="3"/>
+              <line x1="12" y1="40" x2="17" y2="40" stroke="#0B1F3A" stroke-width="3"/>
+              <line x1="55" y1="40" x2="60" y2="40" stroke="#0B1F3A" stroke-width="3"/>
+              <!-- Lightning bolt -->
+              <path d="M62,14 L55,29 L62,29 L54,48 L70,26 L63,26 Z" fill="#FBBF24" stroke="#FF6B2C" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="why-card__title">Fast Turnaround</h3>
+          <p class="why-card__desc">Most repairs are completed in under an hour. We respect your time and schedule — and we always give you an honest time estimate upfront.</p>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- BOOKING FORM -->
+  <!-- ======== HOW IT WORKS ======== -->
+  <section class="how" id="how-it-works">
+    <div class="container">
+      <div class="section-header section-header--light">
+        <h2 class="section-title section-title--light">How It Works</h2>
+        <p class="section-sub section-sub--light">Three simple steps to a perfectly tuned bike.</p>
+      </div>
+      <div class="how__grid">
+
+        <div class="how__step">
+          <div class="how__number">01</div>
+          <div class="how__icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <rect x="8" y="10" width="48" height="46" rx="8" fill="white" opacity="0.14"/>
+              <rect x="8" y="10" width="48" height="16" rx="8" fill="#FF6B2C"/>
+              <rect x="8" y="18" width="48" height="8" fill="#EA580C"/>
+              <rect x="20" y="10" width="5" height="12" rx="2.5" fill="white" opacity="0.85"/>
+              <rect x="39" y="10" width="5" height="12" rx="2.5" fill="white" opacity="0.85"/>
+              <rect x="16" y="34" width="32" height="4" rx="2" fill="white" opacity="0.45"/>
+              <rect x="16" y="42" width="24" height="4" rx="2" fill="white" opacity="0.3"/>
+              <rect x="16" y="50" width="28" height="4" rx="2" fill="white" opacity="0.3"/>
+              <circle cx="52" cy="52" r="10" fill="#22C55E"/>
+              <path d="M46,52 L50,56 L58,46" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="how__title">Book Online</h3>
+          <p class="how__desc">Fill out our quick booking form with your address, bike issue, and preferred time slot. Takes under 60 seconds.</p>
+        </div>
+
+        <div class="how__connector" aria-hidden="true">→</div>
+
+        <div class="how__step">
+          <div class="how__number">02</div>
+          <div class="how__icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="20" width="46" height="28" rx="6" fill="white" opacity="0.14"/>
+              <rect x="4" y="20" width="26" height="20" rx="5" fill="white" opacity="0.2"/>
+              <rect x="6" y="23" width="20" height="14" rx="3" fill="#7DD3FC" opacity="0.8"/>
+              <circle cx="14" cy="48" r="8" fill="white" opacity="0.25"/>
+              <circle cx="14" cy="48" r="4" fill="white" opacity="0.5"/>
+              <circle cx="38" cy="48" r="8" fill="white" opacity="0.25"/>
+              <circle cx="38" cy="48" r="4" fill="white" opacity="0.5"/>
+              <line x1="52" y1="28" x2="61" y2="28" stroke="#FF6B2C" stroke-width="3" stroke-linecap="round"/>
+              <line x1="54" y1="34" x2="61" y2="34" stroke="#FF6B2C" stroke-width="3" stroke-linecap="round"/>
+              <line x1="52" y1="40" x2="61" y2="40" stroke="#FF6B2C" stroke-width="3" stroke-linecap="round"/>
+              <text x="30" y="35" font-size="4.5" fill="white" opacity="0.9" font-weight="bold">MR.BIKE</text>
+            </svg>
+          </div>
+          <h3 class="how__title">We Come to You</h3>
+          <p class="how__desc">Our mechanic arrives at your location on time, fully equipped with tools and the most common parts needed.</p>
+        </div>
+
+        <div class="how__connector" aria-hidden="true">→</div>
+
+        <div class="how__step">
+          <div class="how__number">03</div>
+          <div class="how__icon">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+              <!-- Bike outline -->
+              <circle cx="14" cy="44" r="12" fill="none" stroke="white" stroke-width="3" opacity="0.7"/>
+              <circle cx="50" cy="44" r="12" fill="none" stroke="white" stroke-width="3" opacity="0.7"/>
+              <circle cx="14" cy="44" r="4" fill="white" opacity="0.5"/>
+              <circle cx="50" cy="44" r="4" fill="white" opacity="0.5"/>
+              <line x1="14" y1="44" x2="32" y2="24" stroke="#FF6B2C" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="50" y1="44" x2="32" y2="24" stroke="white" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
+              <line x1="32" y1="24" x2="26" y2="14" stroke="white" stroke-width="3.5" stroke-linecap="round" opacity="0.8"/>
+              <!-- Sparkles -->
+              <text x="44" y="18" font-size="15" fill="#FBBF24">★</text>
+              <text x="6" y="24" font-size="11" fill="#FF6B2C">✦</text>
+              <text x="54" y="34" font-size="9" fill="#FBBF24">✦</text>
+            </svg>
+          </div>
+          <h3 class="how__title">Ride Happy</h3>
+          <p class="how__desc">Your bike is repaired on the spot. Pay easily and get back on the road — usually within the hour. Simple as that.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== FAQ ======== -->
+  <section class="faq" id="faq">
+    <div class="container faq__inner">
+      <div class="section-header">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-sub">Got more questions? <a href="#booking" class="faq__link">Get in touch →</a></p>
+      </div>
+      <div class="faq__list">
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            How quickly can you come?
+            <span class="faq__arrow">↓</span>
+          </summary>
+          <div class="faq__answer">
+            <p>We typically offer same-day or next-day slots across Copenhagen. For urgent repairs, call us directly at <strong>+45 91 61 00 13</strong> and we'll do our best to get to you within a few hours.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            Do you bring all the parts?
+            <span class="faq__arrow">↓</span>
+          </summary>
+          <div class="faq__answer">
+            <p>Yes! Our vans are stocked with the most common bike parts — tubes, tires, cables, brake pads, chains, and more. For rare or specialty parts, we may need to order ahead — just mention your bike model when booking.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            What areas do you cover?
+            <span class="faq__arrow">↓</span>
+          </summary>
+          <div class="faq__answer">
+            <p>We cover all of Copenhagen and the greater Copenhagen area including Frederiksberg, Amager, Østerbro, Nørrebro, Vesterbro, and surrounding neighborhoods. Not sure? Just ask when booking!</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            How much does it cost?
+            <span class="faq__arrow">↓</span>
+          </summary>
+          <div class="faq__answer">
+            <p>Pricing depends on the service. A flat tire repair starts from 199 DKK, brake adjustment from 149 DKK, and a full tune-up from 599 DKK. Parts are charged separately at fair market price. We always provide a quote before starting any work.</p>
+          </div>
+        </details>
+
+        <details class="faq__item">
+          <summary class="faq__question">
+            Can I book same-day?
+            <span class="faq__arrow">↓</span>
+          </summary>
+          <div class="faq__answer">
+            <p>Absolutely! Same-day bookings are available subject to mechanic availability. We recommend booking early in the morning for the best chance of a same-day slot. You can also call us directly for faster scheduling.</p>
+          </div>
+        </details>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== BOOKING FORM ======== -->
   <section class="booking" id="booking">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Book a Repair</span>
-        <h2>Schedule Your Visit</h2>
-        <p>Fill in the form and we'll confirm your booking by email. Need something urgent? <a href="https://wa.me/4591610013" target="_blank" class="wa-link">Message us on WhatsApp</a>.</p>
+        <h2 class="section-title">Book Your Repair</h2>
+        <p class="section-sub">Fill in the form and we'll confirm your appointment within the hour.</p>
       </div>
+      <div class="booking__grid">
 
-      <div class="booking-wrapper">
-        <form class="booking-form" id="bookingForm">
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="name">Full Name <span class="required">*</span></label>
-              <input type="text" id="name" name="name" placeholder="Your full name" autocomplete="name">
-              <span class="field-error" id="nameError"></span>
+        <div class="booking__form-wrap">
+          <form class="booking__form" action="/api/booking" method="POST" id="bookingForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="fullName">Full Name <span class="form-required">*</span></label>
+                <input class="form-input" type="text" id="fullName" name="fullName" placeholder="Your full name" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="email">Email <span class="form-required">*</span></label>
+                <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="phone">Phone <span class="form-optional">(optional)</span></label>
+                <input class="form-input" type="tel" id="phone" name="phone" placeholder="+45 xx xx xx xx" />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="service">Service Needed <span class="form-required">*</span></label>
+                <select class="form-input form-select" id="service" name="service" required>
+                  <option value="" disabled selected>Select a service…</option>
+                  <option value="flat-tire">Flat Tire Repair (~30 min)</option>
+                  <option value="brake-adjustment">Brake Adjustment (~20 min)</option>
+                  <option value="gear-tuning">Gear &amp; Derailleur Tuning (~35 min)</option>
+                  <option value="chain-service">Chain Service (~25 min)</option>
+                  <option value="full-tune-up">Full Bike Tune-Up (~90 min)</option>
+                  <option value="wheel-truing">Wheel Truing (~40 min)</option>
+                  <option value="bike-assembly">Bike Assembly (~60 min)</option>
+                  <option value="general-inspection">General Inspection (~30 min)</option>
+                  <option value="other">Other / Not Sure</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="date">Preferred Date <span class="form-required">*</span></label>
+                <input class="form-input" type="date" id="date" name="date" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="address">Your Address <span class="form-required">*</span></label>
+                <input class="form-input" type="text" id="address" name="address" placeholder="Street, number, city" required />
+              </div>
             </div>
             <div class="form-group">
-              <label for="email">Email Address <span class="required">*</span></label>
-              <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="email">
-              <span class="field-error" id="emailError"></span>
+              <label class="form-label" for="details">Additional Details</label>
+              <textarea class="form-input form-textarea" id="details" name="details" placeholder="Describe the issue, your bike type (road/mountain/city), anything else we should know…" rows="4"></textarea>
             </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="phone">Phone Number <span class="optional">(optional)</span></label>
-              <input type="tel" id="phone" name="phone" placeholder="+45 91 61 00 13" autocomplete="tel">
-            </div>
-            <div class="form-group">
-              <label for="date">Preferred Date <span class="required">*</span></label>
-              <input type="date" id="date" name="date">
-              <span class="field-error" id="dateError"></span>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="service">Service Needed <span class="required">*</span></label>
-            <select id="service" name="service">
-              <option value="">— Select a service —</option>
-              <option value="Flat Tire Repair & Tube Replacement">🛞 Flat Tire Repair & Tube Replacement</option>
-              <option value="Brake Adjustment & Cable Replacement">🛑 Brake Adjustment & Cable Replacement</option>
-              <option value="Gear & Derailleur Tuning">⚙️ Gear & Derailleur Tuning</option>
-              <option value="Chain Cleaning, Lubrication & Replacement">🔗 Chain Cleaning, Lubrication & Replacement</option>
-              <option value="Full Bike Service & Tune-Up">🔩 Full Bike Service & Tune-Up</option>
-              <option value="Wheel Truing & Spoke Adjustment">☸️ Wheel Truing & Spoke Adjustment</option>
-              <option value="Bike Assembly & Fitting">🔨 Bike Assembly & Fitting</option>
-              <option value="General Inspection & Diagnostics">🔍 General Inspection & Diagnostics</option>
-              <option value="Other">Other (describe below)</option>
-            </select>
-            <span class="field-error" id="serviceError"></span>
-          </div>
-
-          <div class="form-group">
-            <label for="address">Your Address <span class="required">*</span></label>
-            <input type="text" id="address" name="address" placeholder="Street, number, city" autocomplete="street-address">
-            <span class="field-error" id="addressError"></span>
-          </div>
-
-          <div class="form-group">
-            <label for="details">Additional Details <span class="optional">(optional)</span></label>
-            <textarea id="details" name="details" rows="4" placeholder="Describe the issue, bike type, or anything else we should know..."></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary btn-large" id="submitBtn">
-              <span id="btnText">Book My Repair</span>
+            <button class="btn btn--orange btn--lg btn--full" type="submit">
+              Book My Repair →
             </button>
-          </div>
+            <p class="form-note">✓ We'll confirm your booking via email within 1 hour &nbsp;·&nbsp; ✓ No payment required upfront</p>
+          </form>
+        </div>
 
-          <div class="form-message" id="formMessage"></div>
-        </form>
-
-        <!-- Side info -->
-        <div class="booking-info">
-          <div class="info-card">
-            <h4>📍 Service Area</h4>
-            <p>We operate across the local area. Enter your address in the form and we'll confirm availability.</p>
+        <div class="booking__info">
+          <div class="booking-info-card">
+            <div class="booking-info-card__icon">📞</div>
+            <div>
+              <div class="booking-info-card__title">Prefer to call?</div>
+              <div class="booking-info-card__value"><a href="tel:+4591610013">+45 91 61 00 13</a></div>
+            </div>
           </div>
-          <div class="info-card">
-            <h4>⏱️ Response Time</h4>
-            <p>We confirm bookings within a few hours. For same-day service, contact us on WhatsApp.</p>
+          <div class="booking-info-card">
+            <div class="booking-info-card__icon">⏰</div>
+            <div>
+              <div class="booking-info-card__title">Operating Hours</div>
+              <div class="booking-info-card__value">Mon – Sat: 8:00 – 20:00</div>
+              <div class="booking-info-card__sub">Sun: 10:00 – 18:00</div>
+            </div>
           </div>
-          <div class="info-card whatsapp-card">
-            <h4>💬 Prefer to Chat?</h4>
-            <p>For urgent repairs or complex issues, reach us directly on WhatsApp.</p>
-            <a href="https://wa.me/4591610013" target="_blank" class="btn btn-whatsapp btn-sm">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-              +45 91 61 00 13
-            </a>
+          <div class="booking-info-card">
+            <div class="booking-info-card__icon">📍</div>
+            <div>
+              <div class="booking-info-card__title">Service Area</div>
+              <div class="booking-info-card__value">All of Copenhagen</div>
+              <div class="booking-info-card__sub">&amp; greater Copenhagen area</div>
+            </div>
+          </div>
+          <div class="booking-info-card booking-info-card--highlight">
+            <div class="booking-info-card__icon">⚡</div>
+            <div>
+              <div class="booking-info-card__title">Same-Day Available</div>
+              <div class="booking-info-card__value">Book before noon</div>
+              <div class="booking-info-card__sub">for same-day service</div>
+            </div>
           </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ======== FOOTER ======== -->
   <footer class="footer">
-    <div class="container footer-inner">
-      <div>
-        <p class="footer-logo">🚲 Mr. Bike</p>
-        <p class="footer-sub">Bike Repair Delivery Service</p>
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="footer__logo">🚲 Mr. Bike</div>
+        <p class="footer__tagline">Copenhagen's friendliest mobile bike mechanic. We come to you, wherever you are.</p>
+        <a href="tel:+4591610013" class="footer__phone">+45 91 61 00 13</a>
       </div>
-      <div class="footer-links">
-        <a href="#services">Services</a>
-        <a href="#how-it-works">How It Works</a>
-        <a href="#booking">Book Now</a>
-        <a href="https://wa.me/4591610013" target="_blank">WhatsApp</a>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <h4 class="footer__nav-title">Quick Links</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#booking">Book Now</a></li>
+        </ul>
+      </nav>
+      <div class="footer__contact">
+        <h4 class="footer__nav-title">Contact Us</h4>
+        <p>Copenhagen, Denmark</p>
+        <p><a href="tel:+4591610013">+45 91 61 00 13</a></p>
+        <p><a href="mailto:hello@mrbike.dk">hello@mrbike.dk</a></p>
       </div>
-      <p class="footer-copy">© 2026 Mr. Bike. All rights reserved.</p>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>&copy; 2026 Mr. Bike. All rights reserved. Made with ❤️ in Copenhagen.</p>
+      </div>
     </div>
   </footer>
 
-  <!-- FLOATING WHATSAPP BUTTON -->
-  <a href="https://wa.me/4591610013" target="_blank" class="wa-float" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  <!-- ======== FLOATING WHATSAPP BUTTON ======== -->
+  <a href="https://wa.me/4591610013" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
     </svg>
   </a>
 
