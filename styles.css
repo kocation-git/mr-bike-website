@@ -28,7 +28,7 @@
   --radius-md:   16px;
   --radius-lg:   24px;
   --radius-pill: 999px;
-  --nav-h:       180px;
+  --nav-h:       100px;
   --transition:  0.2s ease;
 }
 
@@ -196,7 +196,7 @@ h1, h2, h3, h4, h5 {
   flex-shrink: 0;
 }
 .nav__logo-img {
-  height: 166px;
+  height: 90px;
   width: auto;
 }
 .nav__logo-icon {
@@ -274,7 +274,7 @@ h1, h2, h3, h4, h5 {
 /* ==================== HERO ==================== */
 .hero {
   min-height: 90vh;
-  padding-top: var(--nav-h);
+  padding-top: 0;
   background: var(--bg);
   display: flex;
   align-items: center;
@@ -308,6 +308,11 @@ h1, h2, h3, h4, h5 {
   border-radius: var(--radius-pill);
   border: 1px solid rgba(232,24,109,0.20);
   width: fit-content;
+}
+.hero__badge--green {
+  background: rgba(0,137,123,0.08);
+  color: var(--teal);
+  border-color: rgba(0,137,123,0.20);
 }
 
 .hero__headline {
@@ -514,6 +519,23 @@ h1, h2, h3, h4, h5 {
 .service-card__tag--orange {
   background: var(--pink-light);
   color: var(--pink-dark);
+  border-color: rgba(232,24,109,0.20);
+}
+.service-card__price {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--teal);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+  background: rgba(0,137,123,0.08);
+  border: 1px solid rgba(0,137,123,0.20);
+}
+.service-card__price--orange {
+  color: var(--pink-dark);
+  background: var(--pink-light);
   border-color: rgba(232,24,109,0.20);
 }
 
@@ -1039,7 +1061,7 @@ details[open] .faq__arrow {
   /* Hero */
   .hero {
     min-height: auto;
-    padding-top: calc(var(--nav-h) + 8px);
+    padding-top: 0;
   }
   .hero__grid {
     grid-template-columns: 1fr;
@@ -1151,7 +1173,7 @@ details[open] .faq__arrow {
   .footer { padding-top: 48px; }
   .footer__phone { font-size: 14px; }
 
-  .nav__logo-img { height: 104px; }
+  .nav__logo-img { height: 64px; }
 }
 
 /* ==================== SERVICE EMOJI CIRCLES ==================== */
