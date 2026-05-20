@@ -5,6 +5,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 async function sendMail({ from, to, subject, html, attachments }) {
     const payload = { from, to, subject, html };
+    if (process.env.OWNER_EMAIL) payload.reply_to = process.env.OWNER_EMAIL;
     if (attachments && attachments.length > 0) {
         payload.attachments = attachments.map(a => ({ filename: a.filename, content: a.content }));
     }
