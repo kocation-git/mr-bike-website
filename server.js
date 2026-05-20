@@ -12,6 +12,7 @@ const adminRoutes = require('./routes/admin');
 const modifyRoutes = require('./routes/modify');
 
 const app = express();
+app.set('trust proxy', 1); // Required for rate limiting behind Render/proxies
 
 // Security headers via Helmet
 const scriptSources = ["'self'", "'unsafe-inline'", "https://cdn.jsdelivr.net", "https://www.google.com", "https://www.gstatic.com", "https://unpkg.com", "https://cdnjs.cloudflare.com"];
