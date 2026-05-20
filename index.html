@@ -5,12 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mr. Bike — Trusted Mobile Bike Repair in Copenhagen</title>
   <meta name="description" content="Professional mobile bike repair in Copenhagen. We come to your door — flat tires, brakes, tune-ups and more. Same-day service available." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://mrbike.dk/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mr. Bike — Mobile Bike Repair in Copenhagen" />
+  <meta property="og:description" content="Professional mobile bike repair — we come to your door. Flat tires, brakes, tune-ups and more. Same-day service available." />
+  <meta property="og:url" content="https://mrbike.dk/" />
+  <meta property="og:image" content="https://mrbike.dk/logo.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_DK" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Mr. Bike — Mobile Bike Repair in Copenhagen" />
+  <meta name="twitter:description" content="Professional mobile bike repair — we come to your door. Same-day service available." />
+  <meta name="twitter:image" content="https://mrbike.dk/logo.png" />
+
+  <!-- Structured Data: LocalBusiness + Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Mr. Bike",
+    "description": "Professional mobile bike repair service in Copenhagen. We come to your door.",
+    "url": "https://mrbike.dk",
+    "telephone": "+4591610013",
+    "email": "hello@mrbike.dk",
+    "image": "/logo.png",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Copenhagen",
+      "addressCountry": "DK"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 55.6761,
+      "longitude": 12.5683
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Copenhagen"
+    },
+    "openingHours": ["Mo-Sa 08:00-20:00", "Su 10:00-18:00"],
+    "priceRange": "149–599 DKK",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "reviewCount": "100"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Bike Repair Services",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Flat Tire Repair", "description": "Quick tube replacement or puncture patch"}, "price": "199", "priceCurrency": "DKK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Brake Adjustment", "description": "Cable tensioning and pad alignment"}, "price": "149", "priceCurrency": "DKK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Full Bike Tune-Up", "description": "Complete overhaul — brakes, gears, chain, wheels"}, "price": "599", "priceCurrency": "DKK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Gear & Derailleur Tuning", "description": "Smooth, precise shifting across all gears"}, "price": "249", "priceCurrency": "DKK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Chain Service", "description": "Cleaning, lubrication, and replacement"}, "price": "179", "priceCurrency": "DKK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Wheel Truing", "description": "Spoke tension adjustment"}, "price": "199", "priceCurrency": "DKK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Bike Assembly", "description": "Full assembly from box"}, "price": "399", "priceCurrency": "DKK"},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "General Inspection", "description": "20-point safety check"}, "price": "149", "priceCurrency": "DKK"}
+      ]
+    }
+  }
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,600;0,700;0,800;1,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="icon" type="image/png" href="logo.png" />
   <link rel="apple-touch-icon" href="logo.png" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="preload" href="logo.png" as="image" />
+  <script src="https://www.google.com/recaptcha/api.js?render=6LdWypksAAAAAF85hcep1YR2KHGGccsddgb4mWLE" async defer></script>
 </head>
 <body>
 
@@ -25,12 +93,24 @@
       </button>
       <ul class="nav__links" id="navLinks">
         <li><a href="#services">Services</a></li>
+        <li><a href="#calculator">Estimate</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#area">Our Service Area</a></li>
         <li><a href="#faq">FAQ</a></li>
         <li><a href="#booking" class="btn btn--orange btn--sm">Book Now</a></li>
       </ul>
     </div>
   </nav>
+
+  <!-- ======== TOP BANNER ======== -->
+  <div class="top-banner">
+    <div class="top-banner__shimmer"></div>
+    <div class="container top-banner__inner">
+      <span class="top-banner__icon">🔧</span>
+      <span class="top-banner__text">We fix bikes. <span class="top-banner__highlight">We also fix bad days.</span></span>
+      <span class="top-banner__icon">🚲</span>
+    </div>
+  </div>
 
   <!-- ======== HERO ======== -->
   <section class="hero" id="home">
@@ -51,16 +131,18 @@
         <div class="hero__trust hero-anim-5">
           <div class="hero__trust-item">
             <span class="hero__trust-stars">★★★★★</span>
-            <span>500+ happy cyclists</span>
+            <span>100+ happy cyclists</span>
           </div>
           <div class="hero__trust-divider"></div>
           <div class="hero__trust-item">⚡ Same-day available</div>
+          <div class="hero__trust-divider"></div>
+          <div class="hero__trust-item guarantee-trust">Life is short. Your chain shouldn't be</div>
         </div>
       </div>
 
       <div class="hero__visual">
         <div class="hero__photo-card">
-          <img src="grafiti.png" alt="Bike graffiti art" class="hero__photo" />
+          <img src="grafiti.png" alt="Bike graffiti art" class="hero__photo" loading="eager" />
         </div>
       </div>
     </div>
@@ -72,7 +154,7 @@
       <div class="stats__item reveal">
         <span class="stats__icon">🔧</span>
         <div>
-          <div class="stats__number" data-count="500" data-suffix="+">0</div>
+          <div class="stats__number" data-count="100" data-suffix="+">0</div>
           <div class="stats__label">Bikes Fixed</div>
         </div>
       </div>
@@ -210,6 +292,29 @@
     </div>
   </section>
 
+  <!-- ======== PRICING CALCULATOR ======== -->
+  <section class="calculator" id="calculator">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Estimate Your Repair</h2>
+        <p class="section-sub">Select one or more services to get an instant price estimate.</p>
+      </div>
+      <div class="calc__card">
+        <div class="calc__services" id="calcServices">
+          <!-- Populated dynamically from /api/services -->
+        </div>
+        <div class="calc__summary">
+          <div class="calc__total-wrap">
+            <span class="calc__total-label">Estimated Total</span>
+            <span class="calc__total-value" id="calcTotal">0 DKK</span>
+          </div>
+          <p class="calc__note">Starting prices — final cost depends on parts and condition.</p>
+          <a href="#booking" class="btn btn--orange btn--lg btn--full calc__cta">Book Selected Services →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ======== WHY MR. BIKE ======== -->
   <section class="why" id="why">
     <div class="container">
@@ -313,6 +418,126 @@
     </div>
   </section>
 
+  <!-- ======== TESTIMONIALS ======== -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">What Our Cyclists Say</h2>
+        <p class="section-sub">Real reviews from real customers across Copenhagen.</p>
+      </div>
+      <div class="testimonials__grid">
+        <div class="testimonial-card reveal stagger-1">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"Booked at 9am, mechanic was at my door by noon. Fixed my flat and adjusted the brakes — all in 30 minutes. Incredible service."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">M</div>
+            <div>
+              <div class="testimonial-card__name">Mads K.</div>
+              <div class="testimonial-card__location">Nørrebro</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal stagger-2">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"I was dreading taking my bike to a shop. Mr. Bike came to my office and did a full tune-up while I worked. My bike rides like new again!"</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">S</div>
+            <div>
+              <div class="testimonial-card__name">Sofia L.</div>
+              <div class="testimonial-card__location">Frederiksberg</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal stagger-3">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"Honest pricing, fast work, and super friendly. He even showed me how to do basic chain maintenance myself. Will definitely book again."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">J</div>
+            <div>
+              <div class="testimonial-card__name">Jonas P.</div>
+              <div class="testimonial-card__location">Østerbro</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal stagger-4">
+          <div class="testimonial-card__stars">★★★★★</div>
+          <p class="testimonial-card__text">"My gear shifting was a nightmare. He diagnosed and fixed the issue in 20 minutes. Fair price, no upselling. This is how all services should work."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">L</div>
+            <div>
+              <div class="testimonial-card__name">Line H.</div>
+              <div class="testimonial-card__location">Vesterbro</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== SERVICE AREA MAP ======== -->
+  <section class="area" id="area">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Our Service Area &amp; Zone Pricing</h2>
+        <p class="section-sub">We cover all of Copenhagen. Travel surcharge depends on your zone.</p>
+      </div>
+      <div class="area__grid">
+        <div class="area__map reveal">
+          <div id="zoneMap" style="width:100%;height:450px;border-radius:16px;overflow:hidden;"></div>
+        </div>
+        <div class="area__neighborhoods reveal">
+          <h3 class="area__subtitle">Zone Pricing</h3>
+
+          <div class="zone-card zone-card--central">
+            <div class="zone-card__header">
+              <span class="zone-card__dot zone-card__dot--green"></span>
+              <strong>Central Zone</strong>
+              <span class="zone-card__price">FREE</span>
+            </div>
+            <div class="zone-card__tags">
+              <span class="area__tag area__tag--green">Amager</span>
+              <span class="area__tag area__tag--green">Christianshavn</span>
+              <span class="area__tag area__tag--green">Indre By</span>
+              <span class="area__tag area__tag--green">Vesterbro</span>
+              <span class="area__tag area__tag--green">Frederiksberg</span>
+              <span class="area__tag area__tag--green">&Oslash;sterbro</span>
+            </div>
+          </div>
+
+          <div class="zone-card zone-card--inner">
+            <div class="zone-card__header">
+              <span class="zone-card__dot zone-card__dot--yellow"></span>
+              <strong>Inner Ring</strong>
+              <span class="zone-card__price">+50 DKK</span>
+            </div>
+            <div class="zone-card__tags">
+              <span class="area__tag area__tag--yellow">N&oslash;rrebro</span>
+              <span class="area__tag area__tag--yellow">Valby</span>
+              <span class="area__tag area__tag--yellow">Vanl&oslash;se</span>
+              <span class="area__tag area__tag--yellow">Br&oslash;nsh&oslash;j</span>
+            </div>
+          </div>
+
+          <div class="zone-card zone-card--outer">
+            <div class="zone-card__header">
+              <span class="zone-card__dot zone-card__dot--pink"></span>
+              <strong>Outer Ring</strong>
+              <span class="zone-card__price">+100 DKK</span>
+            </div>
+            <div class="zone-card__tags">
+              <span class="area__tag area__tag--pink">Hellerup</span>
+              <span class="area__tag area__tag--pink">Gentofte</span>
+              <span class="area__tag area__tag--pink">Hvidovre</span>
+              <span class="area__tag area__tag--pink">R&oslash;dovre</span>
+            </div>
+          </div>
+
+          <p class="area__note">Not sure which zone you're in? Enter your address in the booking form and we'll detect it automatically.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ======== FAQ ======== -->
   <section class="faq" id="faq">
     <div class="container faq__inner">
@@ -352,6 +577,11 @@
         <h2 class="section-title">Book Your Repair</h2>
         <p class="section-sub">Fill in the form and we'll confirm your appointment within the hour.</p>
       </div>
+      <!-- Live availability counter -->
+      <div class="availability-counter" id="availabilityCounter" style="display:none;">
+        <span class="availability-counter__dot"></span>
+        Only <strong id="slotsCount">0</strong> slots left this week — book now!
+      </div>
       <div class="booking__grid">
         <div class="booking__form-wrap reveal">
           <form class="booking__form" id="bookingForm">
@@ -371,37 +601,104 @@
                 <input class="form-input" type="tel" id="phone" name="phone" placeholder="+45 xx xx xx xx" />
               </div>
               <div class="form-group">
-                <label class="form-label" for="service">Service Needed <span class="form-required">*</span></label>
-                <select class="form-input form-select" id="service" name="service">
-                  <option value="" disabled selected>Select a service…</option>
-                  <option value="Flat Tire Repair & Tube Replacement">🛞 Flat Tire Repair (~30 min)</option>
-                  <option value="Brake Adjustment & Cable Replacement">🛑 Brake Adjustment (~20 min)</option>
-                  <option value="Gear & Derailleur Tuning">⚙️ Gear & Derailleur Tuning (~35 min)</option>
-                  <option value="Chain Cleaning, Lubrication & Replacement">⛓️ Chain Service (~25 min)</option>
-                  <option value="Full Bike Service & Tune-Up">🔧 Full Bike Tune-Up (~90 min)</option>
-                  <option value="Wheel Truing & Spoke Adjustment">☸️ Wheel Truing (~40 min)</option>
-                  <option value="Bike Assembly & Fitting">🔩 Bike Assembly (~60 min)</option>
-                  <option value="General Inspection & Diagnostics">🔍 General Inspection (~30 min)</option>
-                  <option value="Other">Other / Not Sure</option>
+                <label class="form-label">Services Needed <span class="form-required">*</span></label>
+                <div class="service-picker" id="servicePicker">
+                  <div class="service-picker__selected" id="serviceSelected">
+                    <span class="service-picker__placeholder" id="servicePlaceholder">Click to select services…</span>
+                  </div>
+                  <div class="service-picker__dropdown" id="serviceDropdown">
+                    <!-- Populated dynamically from /api/services -->
+                  </div>
+                </div>
+                <div class="custom-service" id="customServiceWrap" style="display:none;margin-top:8px;">
+                  <input class="form-input" type="text" id="customService" placeholder="Describe the service you need…" />
+                </div>
+                <input type="hidden" id="service" name="service" />
+              </div>
+            </div>
+            <!-- Availability Calendar -->
+            <div class="form-group form-group--full">
+              <label class="form-label">Availability Calendar</label>
+              <div class="avail-calendar" id="availCalendar">
+                <div class="avail-calendar__header">
+                  <button type="button" class="avail-calendar__nav" id="calPrev">&larr;</button>
+                  <span class="avail-calendar__month" id="calMonth"></span>
+                  <button type="button" class="avail-calendar__nav" id="calNext">&rarr;</button>
+                </div>
+                <div class="avail-calendar__grid">
+                  <div class="avail-calendar__day-header">Mon</div>
+                  <div class="avail-calendar__day-header">Tue</div>
+                  <div class="avail-calendar__day-header">Wed</div>
+                  <div class="avail-calendar__day-header">Thu</div>
+                  <div class="avail-calendar__day-header">Fri</div>
+                  <div class="avail-calendar__day-header">Sat</div>
+                  <div class="avail-calendar__day-header">Sun</div>
+                </div>
+                <div class="avail-calendar__days" id="calDays"></div>
+                <div class="avail-calendar__legend">
+                  <span class="avail-calendar__legend-item"><span class="avail-calendar__dot avail-calendar__dot--open"></span> Available</span>
+                  <span class="avail-calendar__legend-item"><span class="avail-calendar__dot avail-calendar__dot--limited"></span> Limited</span>
+                  <span class="avail-calendar__legend-item"><span class="avail-calendar__dot avail-calendar__dot--full"></span> Full</span>
+                </div>
+              </div>
+              <input class="form-input" type="hidden" id="date" name="date" />
+              <p class="form-hint" id="selectedDateDisplay" style="display:none;"></p>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="timeSlot">Time Slot <span class="form-optional">(optional)</span></label>
+                <select class="form-input form-select" id="timeSlot" name="timeSlot" disabled>
+                  <option value="" selected>Select a date from calendar…</option>
                 </select>
               </div>
             </div>
             <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="date">Preferred Date <span class="form-required">*</span></label>
-                <input class="form-input" type="date" id="date" name="date" />
-              </div>
-              <div class="form-group">
+              <div class="form-group form-group--full">
                 <label class="form-label" for="address">Your Address <span class="form-required">*</span></label>
-                <input class="form-input" type="text" id="address" name="address" placeholder="Street, number, city" />
+                <div class="address-autocomplete">
+                  <input class="form-input" type="text" id="address" name="address" placeholder="Start typing your address…" autocomplete="off" />
+                  <ul class="address-autocomplete__list" id="addressSuggestions"></ul>
+                </div>
+                <div class="zone-display" id="zoneDisplay" style="display:none;">
+                  <span class="zone-display__icon">&#128205;</span>
+                  <span id="zoneLabel"></span>
+                </div>
               </div>
             </div>
             <div class="form-group">
               <label class="form-label" for="details">Additional Details <span class="form-optional">(optional)</span></label>
               <textarea class="form-input form-textarea" id="details" name="details" placeholder="Describe the issue, your bike type (road/mountain/city), anything else we should know…" rows="4"></textarea>
             </div>
+            <div class="form-group">
+              <label class="form-label" for="photo">Photo of Issue <span class="form-optional">(optional — max 5MB)</span></label>
+              <div class="photo-upload" id="photoUpload">
+                <input class="photo-upload__input" type="file" id="photo" name="photo" accept="image/jpeg,image/png,image/webp" />
+                <div class="photo-upload__placeholder" id="photoPlaceholder">
+                  <span class="photo-upload__icon">📷</span>
+                  <span class="photo-upload__text">Click or drag a photo of your bike issue</span>
+                </div>
+                <div class="photo-upload__preview" id="photoPreview" style="display:none;">
+                  <img id="photoThumb" alt="Preview" />
+                  <button type="button" class="photo-upload__remove" id="photoRemove">&times;</button>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="promoCode">Promo Code <span class="form-optional">(optional)</span></label>
+              <div class="promo-row">
+                <input class="form-input" type="text" id="promoCode" name="promoCode" placeholder="Enter code…" style="text-transform:uppercase;" />
+                <button type="button" class="btn btn--teal btn--sm" id="promoApplyBtn">Apply</button>
+              </div>
+              <p class="promo-msg" id="promoMsg"></p>
+            </div>
+            <!-- Honeypot — invisible to humans -->
+            <div class="form-group" style="position:absolute;left:-9999px;" aria-hidden="true">
+              <label class="form-label" for="website">Website</label>
+              <input class="form-input" type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+            </div>
             <button class="btn btn--orange btn--lg btn--full" type="submit">Book My Repair →</button>
-            <p class="form-note">✓ Confirmation by email within 1 hour &nbsp;·&nbsp; ✓ No payment required upfront</p>
+            <p class="form-note">&#10003; Confirmation by email within 1 hour &nbsp;·&nbsp; Life is short. Your chain shouldn't be</p>
+            <p class="form-note" style="font-size:11px;color:#aaa;margin-top:8px;">Protected by reCAPTCHA · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:#aaa;">Privacy</a> · <a href="https://policies.google.com/terms" target="_blank" rel="noopener" style="color:#aaa;">Terms</a></p>
           </form>
         </div>
         <div class="booking__info reveal">
@@ -436,6 +733,27 @@
               <div class="booking-info-card__sub">for same-day service</div>
             </div>
           </div>
+
+          <div class="booking-info-card">
+            <div class="booking-info-card__icon">&#128179;</div>
+            <div>
+              <div class="booking-info-card__title">Payment Methods</div>
+              <div class="booking__payment-methods">
+                <span class="payment-badge">MobilePay</span>
+                <span class="payment-badge">Card</span>
+                <span class="payment-badge">Cash</span>
+                <span class="payment-badge">Bank Transfer</span>
+              </div>
+            </div>
+          </div>
+          <div class="booking-info-card booking-info-card--guarantee">
+            <div class="booking-info-card__icon">&#128737;</div>
+            <div>
+              <div class="booking-info-card__title">Life is short</div>
+              <div class="booking-info-card__value">Your chain shouldn't be</div>
+              <div class="booking-info-card__sub">We keep your ride smooth — always.</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -463,11 +781,27 @@
         <p>Copenhagen, Denmark</p>
         <p><a href="tel:+4591610013">+45 91 61 00 13</a></p>
         <p><a href="mailto:hello@mrbike.dk">hello@mrbike.dk</a></p>
+        <div class="footer__social">
+          <a href="https://instagram.com/mrbike.cph" target="_blank" rel="noopener" aria-label="Instagram" class="footer__social-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://facebook.com/mrbike.cph" target="_blank" rel="noopener" aria-label="Facebook" class="footer__social-link">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://g.page/mrbike-cph/review" target="_blank" rel="noopener" aria-label="Leave a Google Review" class="footer__social-link footer__social-link--review">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            <span>Review Us</span>
+          </a>
+        </div>
       </div>
     </div>
     <div class="footer__bottom">
-      <div class="container">
+      <div class="container footer__bottom-inner">
         <p>&copy; 2026 Mr. Bike. All rights reserved. Made with ❤️ in Copenhagen.</p>
+        <div class="footer__legal">
+          <a href="/privacy.html">Privacy Policy</a>
+          <a href="/terms.html">Terms & Conditions</a>
+        </div>
       </div>
     </div>
   </footer>
@@ -479,6 +813,21 @@
     </svg>
   </a>
 
+  <!-- ======== BACK TO TOP ======== -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">&uarr;</button>
+
+  <!-- ======== COOKIE CONSENT ======== -->
+  <div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-banner__inner">
+      <p class="cookie-banner__text">We use cookies for spam protection (reCAPTCHA). By continuing, you agree to our <a href="/privacy.html">Privacy Policy</a>.</p>
+      <div class="cookie-banner__actions">
+        <button class="cookie-banner__btn cookie-banner__btn--accept" id="cookieAccept">Accept</button>
+        <button class="cookie-banner__btn cookie-banner__btn--decline" id="cookieDecline">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="script.js"></script>

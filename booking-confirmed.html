@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Booking Confirmed — Mr. Bike</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #F7F7FA; color: #2D3748; min-height: 100vh; display: flex; flex-direction: column; }
+    .header { background: #1A1A2E; padding: 24px 0; text-align: center; }
+    .header a { color: white; text-decoration: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 22px; }
+    .header a span { color: #E8186D; }
+    .content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
+    .card { background: white; border-radius: 24px; padding: 48px 44px; max-width: 540px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,0.06); text-align: center; }
+    .check { width: 80px; height: 80px; border-radius: 50%; background: #D1FAE5; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 40px; }
+    h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 28px; font-weight: 800; color: #1A1A2E; margin-bottom: 8px; }
+    .sub { color: #718096; font-size: 15px; margin-bottom: 32px; line-height: 1.6; }
+    .details { background: #F7F7FA; border-radius: 16px; padding: 24px; margin-bottom: 28px; text-align: left; }
+    .details-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E2E8F0; font-size: 14px; }
+    .details-row:last-child { border-bottom: none; }
+    .details-label { color: #718096; }
+    .details-value { font-weight: 600; color: #1A1A2E; }
+    .ref { color: #E8186D; font-weight: 700; }
+    .actions { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; justify-content: center; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px; transition: opacity 0.2s; }
+    .btn:hover { opacity: 0.9; }
+    .btn--pink { background: #E8186D; color: white; }
+    .btn--outline { background: white; border: 2px solid #E2E8F0; color: #2D3748; }
+    .btn--outline:hover { border-color: #E8186D; color: #E8186D; }
+    .btn--green { background: #25d366; color: white; }
+    .note { margin-top: 28px; font-size: 13px; color: #A0AEC0; line-height: 1.6; }
+    .loading { color: #718096; font-size: 16px; padding: 60px 0; }
+    @media (max-width: 480px) {
+      .card { padding: 32px 24px; }
+      .actions { flex-direction: column; }
+      .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header"><a href="/"><span>Mr. Bike</span></a></div>
+  <div class="content">
+    <div class="card">
+      <div id="loadingState" class="loading">Loading your booking details...</div>
+      <div id="confirmedState" style="display:none;">
+        <div class="check">&#10003;</div>
+        <h1>You're Booked!</h1>
+        <p class="sub">Your repair request has been received. We'll confirm your appointment within the hour by email.</p>
+        <div class="details" id="bookingDetails"></div>
+        <div class="actions">
+          <a href="#" class="btn btn--pink" id="calendarBtn">Add to Calendar</a>
+          <a href="https://wa.me/4591610013" class="btn btn--green" target="_blank">WhatsApp Us</a>
+          <a href="/" class="btn btn--outline">Back to Home</a>
+        </div>
+        <p class="note">A confirmation email has been sent to your inbox. If you don't see it, check your spam folder.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const bookingId = params.get('id');
+
+    if (bookingId) {
+      fetch(`/api/booking/${bookingId}`)
+        .then(r => r.json())
+        .then(data => {
+          if (!data.success) throw new Error();
+          const b = data.booking;
+          const dateStr = new Date(b.date + 'T12:00:00').toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+          const time = b.time_slot || 'Flexible';
+
+          document.getElementById('bookingDetails').innerHTML = `
+            <div class="details-row"><span class="details-label">Reference</span><span class="details-value ref">#${b.id}</span></div>
+            <div class="details-row"><span class="details-label">Service</span><span class="details-value">${esc(b.service)}</span></div>
+            <div class="details-row"><span class="details-label">Date</span><span class="details-value">${dateStr}</span></div>
+            <div class="details-row"><span class="details-label">Time</span><span class="details-value">${esc(time)}</span></div>
+            <div class="details-row"><span class="details-label">Address</span><span class="details-value">${esc(b.address)}</span></div>
+          `;
+
+          // Generate .ics calendar file
+          const calBtn = document.getElementById('calendarBtn');
+          calBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const start = b.date.replace(/-/g, '');
+            const end = start; // all-day event
+            const ics = [
+              'BEGIN:VCALENDAR',
+              'VERSION:2.0',
+              'PRODID:-//Mr. Bike//Booking//EN',
+              'BEGIN:VEVENT',
+              `DTSTART;VALUE=DATE:${start}`,
+              `DTEND;VALUE=DATE:${start}`,
+              `SUMMARY:Mr. Bike — ${b.service}`,
+              `DESCRIPTION:Booking #${b.id}\\nService: ${b.service}\\nTime: ${time}\\nAddress: ${b.address}`,
+              `LOCATION:${b.address}`,
+              'STATUS:CONFIRMED',
+              'END:VEVENT',
+              'END:VCALENDAR'
+            ].join('\r\n');
+            const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `mr-bike-booking-${b.id}.ics`;
+            a.click();
+            URL.revokeObjectURL(url);
+          });
+
+          document.getElementById('loadingState').style.display = 'none';
+          document.getElementById('confirmedState').style.display = 'block';
+        })
+        .catch(() => {
+          document.getElementById('loadingState').innerHTML = 'Booking not found. <a href="/" style="color:#E8186D;">Go home</a>';
+        });
+    } else {
+      document.getElementById('loadingState').innerHTML = 'No booking ID provided. <a href="/" style="color:#E8186D;">Go home</a>';
+    }
+
+    function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+  </script>
+</body>
+</html>

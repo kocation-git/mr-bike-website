@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Your Booking — Mr. Bike</title>
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #F7F7FA; color: #2D3748; min-height: 100vh; display: flex; flex-direction: column; }
+    .header { background: #1A1A2E; padding: 24px 0; text-align: center; }
+    .header a { color: white; text-decoration: none; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 22px; }
+    .header a span { color: #E8186D; }
+    .content { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
+    .card { background: white; border-radius: 24px; padding: 48px 44px; max-width: 580px; width: 100%; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+    h1 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 800; color: #1A1A2E; margin-bottom: 6px; text-align: center; }
+    .sub { color: #718096; font-size: 14px; margin-bottom: 28px; text-align: center; }
+    .details { background: #F7F7FA; border-radius: 16px; padding: 24px; margin-bottom: 24px; }
+    .details-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #E2E8F0; font-size: 14px; }
+    .details-row:last-child { border-bottom: none; }
+    .details-label { color: #718096; }
+    .details-value { font-weight: 600; color: #1A1A2E; }
+    .ref { color: #E8186D; font-weight: 700; }
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; font-size: 13px; font-weight: 600; color: #4A5568; margin-bottom: 6px; }
+    .form-input { width: 100%; padding: 12px 16px; border: 2px solid #E2E8F0; border-radius: 12px; font-size: 14px; font-family: inherit; transition: border-color 0.2s; }
+    .form-input:focus { outline: none; border-color: #E8186D; }
+    .actions { display: flex; gap: 12px; margin-top: 24px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 28px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px; border: none; cursor: pointer; transition: opacity 0.2s; flex: 1; font-family: inherit; }
+    .btn:hover { opacity: 0.9; }
+    .btn--pink { background: #E8186D; color: white; }
+    .btn--outline { background: white; border: 2px solid #E2E8F0; color: #2D3748; }
+    .btn--outline:hover { border-color: #E8186D; color: #E8186D; }
+    .btn--red { background: #DC2626; color: white; }
+    .btn--disabled { opacity: 0.5; pointer-events: none; }
+    .msg { padding: 14px 18px; border-radius: 12px; font-size: 14px; font-weight: 500; margin-bottom: 20px; display: none; }
+    .msg--ok { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; display: block; }
+    .msg--err { background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; display: block; }
+    .loading { color: #718096; font-size: 16px; padding: 60px 0; text-align: center; }
+    .cancel-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid #E2E8F0; text-align: center; }
+    .cancel-section p { font-size: 13px; color: #A0AEC0; margin-bottom: 12px; }
+    .reschedule-form { display: none; }
+    .policy-note { font-size: 12px; color: #A0AEC0; margin-top: 16px; text-align: center; line-height: 1.6; }
+    .status-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .status-badge--pending { background: #FEF3C7; color: #92400E; }
+    .status-badge--confirmed { background: #D1FAE5; color: #065F46; }
+    @media (max-width: 480px) {
+      .card { padding: 28px 20px; }
+      .actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header"><a href="/"><span>Mr. Bike</span></a></div>
+  <div class="content">
+    <div class="card">
+      <div id="loadingState" class="loading">Loading your booking...</div>
+      <div id="errorState" style="display:none;"></div>
+
+      <div id="mainState" style="display:none;">
+        <h1>Manage Your Booking</h1>
+        <p class="sub">Reschedule or cancel your appointment below.</p>
+
+        <div id="msgBox" class="msg"></div>
+
+        <div class="details" id="bookingDetails"></div>
+
+        <div class="actions" id="mainActions">
+          <button class="btn btn--pink" id="rescheduleBtn">Reschedule</button>
+          <a href="/" class="btn btn--outline">Back to Home</a>
+        </div>
+
+        <!-- Reschedule form (toggled) -->
+        <div class="reschedule-form" id="rescheduleForm">
+          <h3 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:700;margin-bottom:16px;">Choose a New Date & Time</h3>
+          <div class="form-group">
+            <label class="form-label" for="newDate">New Date</label>
+            <input class="form-input" type="date" id="newDate" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="newTimeSlot">New Time Slot</label>
+            <select class="form-input" id="newTimeSlot" disabled>
+              <option value="">Select a date first...</option>
+            </select>
+          </div>
+          <div class="actions">
+            <button class="btn btn--pink" id="confirmReschedule">Confirm Reschedule</button>
+            <button class="btn btn--outline" id="cancelReschedule">Back</button>
+          </div>
+        </div>
+
+        <div class="cancel-section" id="cancelSection">
+          <p>Need to cancel? Cancellations must be made at least 24 hours before your appointment.</p>
+          <button class="btn btn--red" id="cancelBtn" style="width:100%;">Cancel Booking</button>
+        </div>
+
+        <p class="policy-note">By rescheduling, your new time slot will be confirmed automatically. Cancellations made within 24 hours of your appointment require contacting us directly at +45 91 61 00 13.</p>
+      </div>
+
+      <div id="doneState" style="display:none;text-align:center;">
+        <div style="width:80px;height:80px;border-radius:50%;background:#D1FAE5;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:40px;">&#10003;</div>
+        <h1 id="doneTitle">Done!</h1>
+        <p class="sub" id="doneMessage"></p>
+        <a href="/" class="btn btn--pink" style="display:inline-flex;margin-top:16px;">Back to Home</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token');
+
+    const loadingEl = document.getElementById('loadingState');
+    const errorEl = document.getElementById('errorState');
+    const mainEl = document.getElementById('mainState');
+    const doneEl = document.getElementById('doneState');
+    const msgBox = document.getElementById('msgBox');
+    let bookingData = null;
+
+    function showMsg(text, ok) {
+      msgBox.textContent = text;
+      msgBox.className = 'msg ' + (ok ? 'msg--ok' : 'msg--err');
+    }
+
+    function esc(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+
+    function formatDate(dateStr) {
+      return new Date(dateStr + 'T12:00:00').toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    if (!token) {
+      loadingEl.innerHTML = 'Invalid link. <a href="/" style="color:#E8186D;">Go home</a>';
+    } else {
+      fetch(`/api/modify/${token}`)
+        .then(r => r.json())
+        .then(data => {
+          if (!data.success) {
+            loadingEl.style.display = 'none';
+            errorEl.style.display = 'block';
+            errorEl.innerHTML = `<div style="text-align:center;padding:40px 0;"><p style="font-size:16px;color:#718096;margin-bottom:20px;">${esc(data.message)}</p><a href="/" style="color:#E8186D;font-weight:600;">Go home</a></div>`;
+            return;
+          }
+
+          bookingData = data.booking;
+          const b = bookingData;
+          const statusClass = b.status === 'confirmed' ? 'status-badge--confirmed' : 'status-badge--pending';
+
+          document.getElementById('bookingDetails').innerHTML = `
+            <div class="details-row"><span class="details-label">Reference</span><span class="details-value ref">#${b.id}</span></div>
+            <div class="details-row"><span class="details-label">Service</span><span class="details-value">${esc(b.service)}</span></div>
+            <div class="details-row"><span class="details-label">Date</span><span class="details-value">${formatDate(b.date)}</span></div>
+            <div class="details-row"><span class="details-label">Time</span><span class="details-value">${esc(b.time_slot || 'Flexible')}</span></div>
+            <div class="details-row"><span class="details-label">Address</span><span class="details-value">${esc(b.address)}</span></div>
+            <div class="details-row"><span class="details-label">Status</span><span class="details-value"><span class="status-badge ${statusClass}">${b.status}</span></span></div>
+          `;
+
+          loadingEl.style.display = 'none';
+          mainEl.style.display = 'block';
+        })
+        .catch(() => {
+          loadingEl.innerHTML = 'Something went wrong. <a href="/" style="color:#E8186D;">Go home</a>';
+        });
+    }
+
+    // Reschedule toggle
+    const rescheduleBtn = document.getElementById('rescheduleBtn');
+    const rescheduleForm = document.getElementById('rescheduleForm');
+    const mainActions = document.getElementById('mainActions');
+    const cancelSection = document.getElementById('cancelSection');
+    const newDateInput = document.getElementById('newDate');
+    const newTimeSlot = document.getElementById('newTimeSlot');
+
+    // Set min date to tomorrow
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    newDateInput.min = tomorrow.toISOString().split('T')[0];
+
+    rescheduleBtn.addEventListener('click', () => {
+      rescheduleForm.style.display = 'block';
+      mainActions.style.display = 'none';
+      cancelSection.style.display = 'none';
+    });
+
+    document.getElementById('cancelReschedule').addEventListener('click', () => {
+      rescheduleForm.style.display = 'none';
+      mainActions.style.display = 'flex';
+      cancelSection.style.display = 'block';
+    });
+
+    // Load available slots when date changes
+    newDateInput.addEventListener('change', async () => {
+      const date = newDateInput.value;
+      if (!date) {
+        newTimeSlot.innerHTML = '<option value="">Select a date first...</option>';
+        newTimeSlot.disabled = true;
+        return;
+      }
+
+      newTimeSlot.innerHTML = '<option value="">Loading...</option>';
+      newTimeSlot.disabled = true;
+
+      try {
+        const res = await fetch(`/api/modify/${token}/availability?date=${date}`);
+        const data = await res.json();
+        if (data.success && data.available.length > 0) {
+          const options = data.available.map(s => {
+            if (typeof s === 'string') return `<option value="${s}">${s}</option>`;
+            return `<option value="${s.value}">${s.label}</option>`;
+          });
+          newTimeSlot.innerHTML = '<option value="">No preference</option>' + options.join('');
+          newTimeSlot.disabled = false;
+        } else {
+          newTimeSlot.innerHTML = '<option value="">No slots available</option>';
+        }
+      } catch {
+        newTimeSlot.innerHTML = '<option value="">Could not load slots</option>';
+      }
+    });
+
+    // Confirm reschedule
+    document.getElementById('confirmReschedule').addEventListener('click', async () => {
+      const date = newDateInput.value;
+      if (!date) { showMsg('Please select a date.', false); return; }
+
+      const btn = document.getElementById('confirmReschedule');
+      btn.disabled = true;
+      btn.textContent = 'Rescheduling...';
+
+      try {
+        const res = await fetch(`/api/modify/${token}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ date, timeSlot: newTimeSlot.value }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          mainEl.style.display = 'none';
+          doneEl.style.display = 'block';
+          document.getElementById('doneTitle').textContent = 'Rescheduled!';
+          document.getElementById('doneMessage').textContent = `Your booking has been moved to ${formatDate(date)}${newTimeSlot.value ? ' (' + newTimeSlot.value + ')' : ''}. A confirmation email has been sent.`;
+        } else {
+          showMsg(data.message, false);
+        }
+      } catch {
+        showMsg('Something went wrong. Please try again.', false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Confirm Reschedule';
+      }
+    });
+
+    // Cancel booking
+    document.getElementById('cancelBtn').addEventListener('click', async () => {
+      if (!confirm('Are you sure you want to cancel this booking? This action cannot be undone.')) return;
+
+      const btn = document.getElementById('cancelBtn');
+      btn.disabled = true;
+      btn.textContent = 'Cancelling...';
+
+      try {
+        const res = await fetch(`/api/modify/${token}`, {
+          method: 'DELETE',
+        });
+        const data = await res.json();
+        if (data.success) {
+          mainEl.style.display = 'none';
+          doneEl.style.display = 'block';
+          document.getElementById('doneTitle').textContent = 'Booking Cancelled';
+          document.getElementById('doneMessage').textContent = 'Your booking has been cancelled. A confirmation email has been sent.';
+        } else {
+          showMsg(data.message, false);
+        }
+      } catch {
+        showMsg('Something went wrong. Please try again.', false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Cancel Booking';
+      }
+    });
+  </script>
+</body>
+</html>

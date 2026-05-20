@@ -4,3 +4,9 @@ node_modules/
 .DS_Store
 Thumbs.db
 *.log
+bookings.db
+bookings.db-wal
+bookings.db-shm
+uploads/
+backups/
+invoices/
