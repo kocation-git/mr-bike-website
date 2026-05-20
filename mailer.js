@@ -1,22 +1,16 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const DOMPurify = require('isomorphic-dompurify');
 
-const smtpPort = parseInt(process.env.SMTP_PORT, 10) || 587;
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    port: smtpPort,
-    secure: smtpPort === 465,
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
-    },
-    connectionTimeout: 10000,
-    greetingTimeout: 10000,
-});
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-transporter.verify()
-    .then(() => console.log('Mail transporter ready'))
-    .catch((err) => console.warn('Mail config issue:', err.message));
+async function sendMail({ from, to, subject, html, attachments }) {
+    const payload = { from, to, subject, html };
+    if (attachments && attachments.length > 0) {
+        payload.attachments = attachments.map(a => ({ filename: a.filename, content: a.content }));
+    }
+    const { error } = await resend.emails.send(payload);
+    if (error) throw new Error(error.message || JSON.stringify(error));
+}
 
 // Sanitize user input: strip all HTML tags via DOMPurify, then HTML-escape for safe embedding in emails
 const esc = (s) => {
@@ -69,7 +63,7 @@ async function sendStatusEmail(booking) {
     const cfg = statusConfig[booking.status];
     if (!cfg) return;
 
-    await transporter.sendMail({
+    await sendMail({
         from: getFromAddress(),
         to: booking.email,
         subject: cfg.subject,
@@ -142,7 +136,7 @@ async function sendReminderEmail(booking) {
     const formattedDate = formatDate(booking.date);
     const timeSlot = booking.time_slot ? ` (${esc(booking.time_slot)})` : '';
 
-    await transporter.sendMail({
+    await sendMail({
         from: getFromAddress(),
         to: booking.email,
         subject: `Reminder: ${safeService} Tomorrow | Mr. Bike`,
@@ -240,7 +234,7 @@ async function sendChecklistEmail(booking) {
           <a href="${modifyLink}" style="background:#0f172a;color:#ffffff;text-decoration:none;padding:12px 28px;border-radius:8px;font-size:14px;font-weight:700;display:inline-block;">Reschedule or Cancel</a>
         </div>` : '';
 
-    await transporter.sendMail({
+    await sendMail({
         from: getFromAddress(),
         to: booking.email,
         subject: `Checklist for Your Appointment — ${safeService} | Mr. Bike`,
@@ -354,7 +348,7 @@ async function sendServiceReport(booking, report, pdfBuffer) {
         contentType: 'application/pdf',
     }] : [];
 
-    await transporter.sendMail({
+    await sendMail({
         from: getFromAddress(),
         to: booking.email,
         subject: `Service Report & Invoice ${invoiceNum} — ${safeService} | Mr. Bike`,
@@ -463,7 +457,7 @@ async function sendReviewRequestEmail(booking) {
     const safeService = esc(booking.service);
     const googleReviewUrl = process.env.GOOGLE_REVIEW_URL || 'https://g.page/r/YOUR_GOOGLE_REVIEW_LINK';
 
-    await transporter.sendMail({
+    await sendMail({
         from: getFromAddress(),
         to: booking.email,
         subject: `How was your repair? — Mr. Bike`,
@@ -523,4 +517,4 @@ async function sendReviewRequestEmail(booking) {
     console.log(`Review request email sent to ${booking.email} for booking #${booking.id}`);
 }
 
-module.exports = { transporter, esc, getFromAddress, formatDate, sendStatusEmail, sendReminderEmail, sendChecklistEmail, sendServiceReport, sendReviewRequestEmail };
+module.exports = { sendMail, esc, getFromAddress, formatDate, sendStatusEmail, sendReminderEmail, sendChecklistEmail, sendServiceReport, sendReviewRequestEmail };

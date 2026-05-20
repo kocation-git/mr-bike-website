@@ -5,7 +5,7 @@ const path = require('path');
 const crypto = require('crypto');
 const DOMPurify = require('isomorphic-dompurify');
 const db = require('../db');
-const { transporter, esc, getFromAddress, formatDate } = require('../mailer');
+const { sendMail, esc, getFromAddress, formatDate } = require('../mailer');
 const { getAvailableSlots, getMonthAvailability, getWeekSlotsRemaining, slotsNeeded, ALL_SLOTS } = require('../utils/slots');
 
 // Sanitize a plain-text field: strip all HTML
@@ -349,7 +349,7 @@ router.post('/booking', upload.single('photo'), async (req, res) => {
         const verifyLink = `${baseUrl}/api/verify/${verificationToken}`;
 
         // --- Send verification email to customer ---
-        await transporter.sendMail({
+        await sendMail({
             from: fromAddress,
             to: email.trim(),
             subject: `Verify Your Booking — ${safeService} | Mr. Bike`,
@@ -467,7 +467,7 @@ router.get('/verify/:token', async (req, res) => {
         const photoNotice = booking.photo ? `<p style="margin:16px 0 0;color:#64748b;font-size:13px;">Customer attached a photo — <a href="${baseUrl}/uploads/${booking.photo}" style="color:#3b82f6;">View photo</a></p>` : '';
         const zoneInfo = booking.zone ? `<tr><td style="padding:7px 0;color:#64748b;font-size:13px;">Zone</td><td style="padding:7px 0;color:#0f172a;font-size:14px;">${esc(booking.zone)}${booking.zone_surcharge > 0 ? ` (+${booking.zone_surcharge} DKK)` : ''}</td></tr>` : '';
         // Owner notification
-        await transporter.sendMail({
+        await sendMail({
             from: fromAddress,
             to: ownerEmail,
             subject: `New Booking #${booking.id}: ${safeService} — ${safeName}`,
@@ -518,7 +518,7 @@ router.get('/verify/:token', async (req, res) => {
         });
 
         // Customer confirmation
-        await transporter.sendMail({
+        await sendMail({
             from: fromAddress,
             to: booking.email,
             subject: `Booking Confirmed — ${safeService} | Mr. Bike`,
@@ -619,7 +619,7 @@ router.post('/gdpr/delete-request', async (req, res) => {
     const confirmLink = `${baseUrl}/api/gdpr/confirm-delete/${deleteToken}?email=${encodeURIComponent(cleanEmail)}`;
 
     try {
-        await transporter.sendMail({
+        await sendMail({
             from: getFromAddress(),
             to: cleanEmail,
             subject: 'Confirm Data Deletion Request — Mr. Bike',
